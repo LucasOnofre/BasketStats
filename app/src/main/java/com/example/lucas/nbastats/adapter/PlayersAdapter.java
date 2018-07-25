@@ -12,12 +12,12 @@ import com.example.lucas.nbastats.model.Players;
 
 import java.util.List;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
+public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.CustomViewHolder> {
 
     private List<Players> dataList;
     private Context context;
 
-    public CustomAdapter(Context context,List<Players> dataList){
+    public PlayersAdapter(Context context,List<Players> dataList){
         this.context    = context;
         this.dataList   = dataList;
     }
@@ -33,6 +33,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
 
         CustomViewHolder(View itemView) {
+
             super(itemView);
 
             view       = itemView;
@@ -47,7 +48,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.view_holder_layout, parent, false);
+        View view = layoutInflater.inflate(R.layout.line_players, parent, false);
         return new CustomViewHolder(view);
     }
 
@@ -60,10 +61,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         holder.birthDate  .setText(dataList.get(position).getBirthDate());
         holder.rookieYear .setText(dataList.get(position).getRookieYear().toString());
 
+
     }
 
     @Override
     public int getItemCount() {
         return dataList.size();
     }
+
 }

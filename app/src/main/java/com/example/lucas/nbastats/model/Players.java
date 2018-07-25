@@ -20,7 +20,7 @@ public class Players {
     private String team;
 
 
-    public Players(Integer rookieYear, String lastName, String firstName, String birthDate, String status, String team) {
+    public Players(Integer rookieYear, String fullName, String birthDate, String status, String team) {
         this.rookieYear = rookieYear;
         this.fullName   = fullName;
         this.birthDate  = birthDate;

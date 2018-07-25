@@ -1,4 +1,4 @@
-package com.example.lucas.nbastats;
+package com.example.lucas.nbastats.activity;
 
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -8,22 +8,21 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.lucas.nbastats.adapter.CustomAdapter;
+import com.example.lucas.nbastats.R;
+import com.example.lucas.nbastats.adapter.PlayersAdapter;
 import com.example.lucas.nbastats.model.Players;
 import com.example.lucas.nbastats.request.GetDataPlayers;
 import com.example.lucas.nbastats.request.RetrofitClient;
-
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private CustomAdapter adapter;
+    private PlayersAdapter adapter;
     private RecyclerView  recyclerView;
-    ProgressDialog        progressDialog;
+    private ProgressDialog progressDialog;
     private RecyclerView.LayoutManager layoutManager;
 
 
@@ -63,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
     private void GenerateDataList(List<Players> playersList){
-        adapter      = new CustomAdapter(this,playersList);
+        adapter      = new PlayersAdapter(this,playersList);
         recyclerView.setAdapter(adapter);
     }
 }
