@@ -56,7 +56,7 @@ public class ChooseTeamActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choose_team);d
+        setContentView(R.layout.activity_choose_team);
 
 
         viewPager   = findViewById(R.id.viewPager);
