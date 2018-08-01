@@ -11,37 +11,37 @@ import android.widget.Toast;
 import com.example.lucas.nbastats.R;
 import com.example.lucas.nbastats.adapter.PlayersAdapter;
 import com.example.lucas.nbastats.model.Players;
-import com.example.lucas.nbastats.request.RequestAllPlayers;
 import com.example.lucas.nbastats.request.RequestPlayer;
 import com.example.lucas.nbastats.request.RetrofitClient;
+
 import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class TeamPlayersActivity extends AppCompatActivity {
 
     private PlayersAdapter adapter;
-    private RecyclerView  recyclerView;
+    private RecyclerView recyclerView;
     private ProgressDialog progressDialog;
     private RecyclerView.LayoutManager layoutManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_team_players);
 
-        recyclerView = findViewById(R.id.recycle_list);
+        recyclerView = findViewById(R.id.recycle_list_team_players);
 
-        layoutManager = new LinearLayoutManager(MainActivity.this);
+        layoutManager = new LinearLayoutManager(TeamPlayersActivity.this);
         recyclerView.setLayoutManager(layoutManager);
 
-        progressDialog = new ProgressDialog(MainActivity.this);
+        progressDialog = new ProgressDialog(TeamPlayersActivity.this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        new RequestAllPlayers().getAllPlayers().enqueue(new Callback<List<Players>>() {
+        new RequestPlayer().getPlayersFrom("ATL").enqueue(new Callback<List<Players>>() {
             @Override
             public void onResponse(Call<List<Players>> call, Response<List<Players>> response) {
                 progressDialog.dismiss();
@@ -53,12 +53,15 @@ public class MainActivity extends AppCompatActivity {
 
                 progressDialog.dismiss();
                 Log.i("Error: ",t.toString());
-                Toast.makeText(MainActivity.this, "Tente novamente...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TeamPlayersActivity.this, "Error, please try again!", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
     private void GenerateDataList(List<Players> playersList){
         adapter      = new PlayersAdapter(this,playersList);
         recyclerView.setAdapter(adapter);
     }
+
 }
+
