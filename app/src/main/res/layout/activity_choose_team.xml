@@ -8,6 +8,8 @@
     tools:context=".activity.ChooseTeamActivity"
     android:id="@+id/relativeLayout">
 
+    
+
     <!--<android.support.v7.widget.RecyclerView-->
         <!--android:id="@+id/recycle_list_teams"-->
         <!--android:layout_width="match_parent"-->
@@ -25,7 +27,7 @@
         android:layout_marginTop="32dp"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="23dp"
+        android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="330dp"
         android:layout_gravity="center"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:clipToPadding="false"
         android:overScrollMode="never"
         android:paddingBottom="30dp"
@@ -43,10 +45,8 @@
         android:paddingLeft="@dimen/card_padding"
         android:paddingRight="@dimen/card_padding"
         android:paddingStart="@dimen/card_padding"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/team_name"
-        app:layout_constraintVertical_bias="0.17000002" />
+        app:layout_constraintTop_toBottomOf="@+id/team_name" />
 
 </android.support.constraint.ConstraintLayout>

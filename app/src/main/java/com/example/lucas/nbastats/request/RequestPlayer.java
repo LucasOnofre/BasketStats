@@ -1,6 +1,6 @@
 package com.example.lucas.nbastats.request;
 
-import com.example.lucas.nbastats.model.Players;
+import com.example.lucas.nbastats.model.Player;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class RequestPlayer{
         service = RetrofitClient.getRetrofitInstance().create(Service.class);
     }
 
-    public Call<List<Players>> getPlayersFrom(String team){
+    public Call<List<Player>> getPlayersFrom(String team){
         String endpoint = "/nba/v0/players/" + team;
 
         return  service.getPlayersFrom(endpoint);
@@ -26,6 +26,6 @@ public class RequestPlayer{
     private interface Service {
 
         @GET()
-        Call<List<Players>> getPlayersFrom(@Url String url);
+        Call<List<Player>> getPlayersFrom(@Url String url);
     }
 }

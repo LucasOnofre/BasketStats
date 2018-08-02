@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.lucas.nbastats.R;
-import com.example.lucas.nbastats.model.Players;
+import com.example.lucas.nbastats.model.Player;
 
 import java.util.List;
 
 public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.CustomViewHolder> {
 
-    private List<Players> dataList;
+    private List<Player> dataList;
     private Context context;
 
-    public PlayersAdapter(Context context,List<Players> dataList){
+    public PlayersAdapter(Context context,List<Player> dataList){
         this.context    = context;
         this.dataList   = dataList;
     }

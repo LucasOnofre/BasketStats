@@ -2,7 +2,7 @@ package com.example.lucas.nbastats.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Players {
+public class Player {
 
     @SerializedName("rookieYear")
     private Integer rookieYear;
@@ -20,7 +20,7 @@ public class Players {
     private String team;
 
 
-    public Players(Integer rookieYear, String fullName, String birthDate, String status, String team) {
+    public Player(Integer rookieYear, String fullName, String birthDate, String status, String team) {
         this.rookieYear = rookieYear;
         this.fullName   = fullName;
         this.birthDate  = birthDate;

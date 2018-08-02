@@ -1,8 +1,8 @@
 package com.example.lucas.nbastats.activity;
 
 import android.app.ProgressDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,10 +10,8 @@ import android.widget.Toast;
 
 import com.example.lucas.nbastats.R;
 import com.example.lucas.nbastats.adapter.PlayersAdapter;
-import com.example.lucas.nbastats.model.Players;
+import com.example.lucas.nbastats.model.Player;
 import com.example.lucas.nbastats.request.RequestAllPlayers;
-import com.example.lucas.nbastats.request.RequestPlayer;
-import com.example.lucas.nbastats.request.RetrofitClient;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,15 +39,15 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        new RequestAllPlayers().getAllPlayers().enqueue(new Callback<List<Players>>() {
+        new RequestAllPlayers().getAllPlayers().enqueue(new Callback<List<Player>>() {
             @Override
-            public void onResponse(Call<List<Players>> call, Response<List<Players>> response) {
+            public void onResponse(Call<List<Player>> call, Response<List<Player>> response) {
                 progressDialog.dismiss();
                 GenerateDataList(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<Players>> call, Throwable t) {
+            public void onFailure(Call<List<Player>> call, Throwable t) {
 
                 progressDialog.dismiss();
                 Log.i("Error: ",t.toString());
@@ -57,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private void GenerateDataList(List<Players> playersList){
+    private void GenerateDataList(List<Player> playersList){
         adapter      = new PlayersAdapter(this,playersList);
         recyclerView.setAdapter(adapter);
     }

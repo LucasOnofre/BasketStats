@@ -3,18 +3,18 @@ package com.example.lucas.nbastats.model;
 public class Team {
 
     private int    logo;
-    private String team;
+    private String initials;
     private String fullName;
 
-    public Team(String fullName, String team, int logo) {
+    public Team(String fullName, String initials, int logo) {
         this.logo = logo;
-        this.team = team;
+        this.initials = initials;
         this.fullName = fullName;
     }
 
-    public Team(String team, int logo) {
+    public Team(String initials, int logo) {
         this.logo = logo;
-        this.team = team;
+        this.initials = initials;
     }
 
     public int getLogo() {
@@ -25,12 +25,12 @@ public class Team {
         this.logo = logo;
     }
 
-    public String getTeam() {
-        return team;
+    public String getInitials() {
+        return initials;
     }
 
-    public void setTeam(String team) {
-        this.team = team;
+    public void setInitials(String initials) {
+        this.initials = initials;
     }
 
     public String getFullName() {

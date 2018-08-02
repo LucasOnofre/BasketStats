@@ -20,6 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.TeamPlayersActivity"></activity>
+        <activity android:name=".activity.TeamPlayersActivity" />
+        <activity android:name=".activity.BaseActivity"></activity>
     </application>
+
 </manifest>
