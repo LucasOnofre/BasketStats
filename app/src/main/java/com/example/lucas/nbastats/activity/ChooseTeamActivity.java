@@ -55,6 +55,8 @@ public class ChooseTeamActivity extends AppCompatActivity{
 //            R.drawable.san      ,R.drawable.toronto     ,R.drawable.uta     ,R.drawable.washington,
     };
 
+    //teste
+
 
     private ViewPager         viewPager;
     private CardPagerAdapter  cardAdapter;
