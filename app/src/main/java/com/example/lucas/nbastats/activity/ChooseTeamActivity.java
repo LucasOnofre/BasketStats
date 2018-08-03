@@ -15,7 +15,7 @@ public class ChooseTeamActivity extends AppCompatActivity {
 
     //Array com todos os times, contendo nome,sigla e logo
     private Team[] teams = new Team[]{
-            new Team("Atlanta"                      ,"ATL"   ,  R.drawable.atlanta),
+            new Team("Atlanta Hawks"                ,"ATL"   ,  R.drawable.atlanta),
             new Team("Brooklyn Nets"                ,"BKN"   ,  R.drawable.brooklyn),
             new Team("Boston Celtics"               ,"BOS"   ,  R.drawable.boston),
             new Team("Chicago Bulls"                ,"CHB"   ,  R.drawable.chicago),

@@ -1,12 +1,15 @@
 package com.example.lucas.nbastats.activity;
 
 import android.app.ProgressDialog;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 import com.example.lucas.nbastats.R;
 import com.example.lucas.nbastats.adapter.PlayersAdapter;
@@ -19,6 +22,8 @@ import retrofit2.Response;
 
 public class TeamPlayersActivity extends AppCompatActivity {
 
+
+    private Toolbar toolbar;
     private PlayersAdapter adapter;
     private RecyclerView recyclerView;
     private ProgressDialog progressDialog;
@@ -29,8 +34,7 @@ public class TeamPlayersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_players);
 
-        Toolbar toolbar = findViewById(R.id.toolbar_team_players);
-        setSupportActionBar(toolbar);
+
 
         recyclerView = findViewById(R.id.recycle_list_team_players);
 
@@ -40,6 +44,16 @@ public class TeamPlayersActivity extends AppCompatActivity {
         String teamName     = getIntent().getStringExtra("teamName");
         String teamInitial  = getIntent().getStringExtra("teamInitials");
 
+        //Configurando a toolbar
+        toolbar = findViewById(R.id.toolbar_team_players);
+        toolbar.setTitle(teamName);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+        //Progress dialog que aparece antes da chamada e some após a mesma ser realizada
         progressDialog = new ProgressDialog(TeamPlayersActivity.this);
         progressDialog.setMessage("Loading...");
         progressDialog.show();
@@ -62,10 +76,22 @@ public class TeamPlayersActivity extends AppCompatActivity {
         });
 
     }
+    // Pega a resposta do request e manda para o adapter
     private void GenerateDataList(List<Player> playersList){
         adapter      = new PlayersAdapter(this,playersList);
         recyclerView.setAdapter(adapter);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
 
