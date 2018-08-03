@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/action_arenas"
+        android:enabled="true"
+        android:icon="@drawable/ic_arena_location"
+        android:title="@string/arenas"
+        app:showAsAction="ifRoom" />
+
+
+    <item
+        android:id="@+id/action_players"
+        android:enabled="true"
+        android:icon="@drawable/ic_team_players"
+        android:title="@string/players"
+        app:showAsAction="ifRoom" />
+
+</menu>

@@ -1,7 +1,6 @@
 package com.example.lucas.nbastats.activity;
 
 import android.app.ProgressDialog;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 import com.example.lucas.nbastats.R;
 import com.example.lucas.nbastats.adapter.PlayersAdapter;
@@ -33,8 +31,6 @@ public class TeamPlayersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_players);
-
-
 
         recyclerView = findViewById(R.id.recycle_list_team_players);
 
@@ -74,8 +70,8 @@ public class TeamPlayersActivity extends AppCompatActivity {
                 Toast.makeText(TeamPlayersActivity.this, "Error, please try again!", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
+
     // Pega a resposta do request e manda para o adapter
     private void GenerateDataList(List<Player> playersList){
         adapter      = new PlayersAdapter(this,playersList);

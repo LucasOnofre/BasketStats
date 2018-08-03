@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">NbaStats</string>
     <string name="base_url">http://api.suredbits.com</string>
+    <string name="arenas">Arenas</string>
+    <string name="players">Players</string>
+    <string name="home">Home</string>
 </resources>

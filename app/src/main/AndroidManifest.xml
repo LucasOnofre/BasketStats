@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.ChooseTeamActivity">
+        <activity android:name=".activity.ChoseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,7 +21,8 @@
         </activity>
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.TeamPlayersActivity" />
-        <activity android:name=".activity.BaseActivity"></activity>
+        <activity android:name=".activity.BaseActivity" />
+        <activity android:name=".activity.ChooseTeamActivity"></activity>
     </application>
 
 </manifest>
