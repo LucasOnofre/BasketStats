@@ -41,10 +41,6 @@
         android:clipToPadding="false"
         android:overScrollMode="never"
         android:paddingBottom="30dp"
-        android:paddingEnd="@dimen/card_padding"
-        android:paddingLeft="@dimen/card_padding"
-        android:paddingRight="@dimen/card_padding"
-        android:paddingStart="@dimen/card_padding"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/team_name" />
