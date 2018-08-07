@@ -35,6 +35,8 @@ public class ChoseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chose);
 
+
+        //Configurando a toolbar
         toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -45,6 +47,8 @@ public class ChoseActivity extends AppCompatActivity {
 
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+
 
         setupTabIcons();
     }
@@ -58,14 +62,14 @@ public class ChoseActivity extends AppCompatActivity {
     //Cria os fragmentos passando os títulos
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new ArenasFragment(),  "ARENAS");
+        adapter.addFragment(new ArenasFragment(),  "ARENA");
         adapter.addFragment(new PlayersFragment(), "PLAYERS");
         viewPager.setAdapter(adapter);
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
+        private final List<Fragment> mFragmentList      = new ArrayList<>();
+        private final List<String> mFragmentTitleList   = new ArrayList<>();
 
         public ViewPagerAdapter(FragmentManager manager) {
             super(manager);

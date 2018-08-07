@@ -1,6 +1,7 @@
 package com.example.lucas.nbastats.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -101,16 +102,27 @@ public class ChooseTeamActivity extends AppCompatActivity {
         @Override
         public void onTeamClick(int teamIndex) {
 
-            String initial = teams[teamIndex].getInitials();
+            String initial  = teams[teamIndex].getInitials();
             String nameTeam = teams[teamIndex].getFullName();
 
-            Intent intent = new Intent(ChooseTeamActivity.this,TeamPlayersActivity.class);
+            saveInDeviceValues(initial,nameTeam);
 
-            intent.putExtra("teamName",nameTeam);
-            intent.putExtra("teamInitials",initial);
+            Intent intent = new Intent(ChooseTeamActivity.this,TeamPlayersActivity.class);
 
             startActivity(intent);
         }
     };
+
+    private void  saveInDeviceValues(String initial,String nameTeam){
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        SharedPreferences.Editor editor = pref.edit();
+
+        editor.putString("teamInitials",initial);
+        editor.putString("teamName",nameTeam);
+        editor.commit();
+
+    }
+
 }
 
