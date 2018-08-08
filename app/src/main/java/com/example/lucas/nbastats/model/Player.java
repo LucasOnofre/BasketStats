@@ -10,9 +10,6 @@ public class Player {
     @SerializedName("fullName")
     private String fullName;
 
-    @SerializedName("birthDate")
-    private String birthDate;
-
     @SerializedName("status")
     private String status;
 
@@ -23,7 +20,6 @@ public class Player {
     public Player(Integer rookieYear, String fullName, String birthDate, String status, String team) {
         this.rookieYear = rookieYear;
         this.fullName   = fullName;
-        this.birthDate  = birthDate;
         this.status     = status;
         this.team       = team;
     }
@@ -42,14 +38,6 @@ public class Player {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public String getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
     }
 
     public String getStatus() {

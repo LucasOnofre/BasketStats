@@ -107,15 +107,14 @@ public class ChooseTeamActivity extends AppCompatActivity {
 
             saveInDeviceValues(initial,nameTeam);
 
-            Intent intent = new Intent(ChooseTeamActivity.this,TeamPlayersActivity.class);
-
+            Intent intent = new Intent(ChooseTeamActivity.this,TeamInfo.class);
             startActivity(intent);
         }
     };
 
     private void  saveInDeviceValues(String initial,String nameTeam){
 
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        SharedPreferences pref          = getApplicationContext().getSharedPreferences("MyPref", 0);
         SharedPreferences.Editor editor = pref.edit();
 
         editor.putString("teamInitials",initial);

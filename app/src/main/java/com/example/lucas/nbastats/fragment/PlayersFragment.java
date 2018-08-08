@@ -61,9 +61,8 @@ public class PlayersFragment extends Fragment {
 
 
         //Retorna os dados salvos dos times ao serem escolhidos
-        SharedPreferences pref = getContext().getSharedPreferences("MyPref", 0);
-
-        String teamInitials = pref.getString("teamInitials", null);
+        SharedPreferences pref  = getContext().getSharedPreferences("MyPref", 0);
+        String teamInitials     = pref.getString("teamInitials", null);
 
 
 

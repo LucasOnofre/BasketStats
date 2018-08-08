@@ -34,6 +34,7 @@ public class TeamPlayersActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycle_list_team_players);
 
+        //Configura o recycleView
         layoutManager = new LinearLayoutManager(TeamPlayersActivity.this);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -78,6 +79,8 @@ public class TeamPlayersActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+
+    //Método que cuida dos itens selecionados no menu/toolbar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

@@ -1,43 +1,39 @@
 package com.example.lucas.nbastats.activity;
 
-import android.support.design.widget.BottomNavigationView;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.example.lucas.nbastats.R;
-import com.example.lucas.nbastats.fragment.ArenasFragment;
+import com.example.lucas.nbastats.fragment.GamesFragment;
 import com.example.lucas.nbastats.fragment.PlayersFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChoseActivity extends AppCompatActivity {
+public class TeamInfo extends AppCompatActivity {
 
-    private Toolbar toolbar;
+    private Toolbar   toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
-    //Vetor com as imagens dos ícones
-    private int[] tabIcons = {
-            R.drawable.ic_arena_location,
-            R.drawable.ic_team_players,
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chose);
+        setContentView(R.layout.activity_teaminfo);
 
 
         //Configurando a toolbar
         toolbar =  findViewById(R.id.toolbar);
+        toolbar.setTitle(getSavedData());
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -47,22 +43,26 @@ public class ChoseActivity extends AppCompatActivity {
 
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
-
-
-        setupTabIcons();
     }
 
-    //Método que seta os ícones nas tabs
-    private void setupTabIcons() {
-        tabLayout.getTabAt(0).setIcon(tabIcons[0]);
-        tabLayout.getTabAt(1).setIcon(tabIcons[1]);
+    //Método que cuida dos itens selecionados no menu/toolbar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
+
 
     //Cria os fragmentos passando os títulos
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new ArenasFragment(),  "ARENA");
+        adapter.addFragment(new GamesFragment(),  "GAMES");
         adapter.addFragment(new PlayersFragment(), "PLAYERS");
         viewPager.setAdapter(adapter);
     }
@@ -94,5 +94,13 @@ public class ChoseActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             return mFragmentTitleList.get(position);
         }
+    }
+
+    private String getSavedData(){
+        //Retorna os dados salvos dos times ao serem escolhidos
+        SharedPreferences pref  = this.getSharedPreferences("MyPref", 0);
+        String teamName     = pref.getString("teamName", null);
+
+        return teamName;
     }
 }
