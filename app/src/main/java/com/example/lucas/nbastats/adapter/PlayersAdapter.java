@@ -1,6 +1,7 @@
 package com.example.lucas.nbastats.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +11,6 @@ import android.widget.TextView;
 import com.example.lucas.nbastats.R;
 import com.example.lucas.nbastats.model.Player;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.CustomViewHolder> {
@@ -58,11 +56,18 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.CustomVi
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
 
-        holder.names     .setText(dataList.get(position).getFullName());
-        holder.status    .setText(dataList.get(position).getStatus());
+        holder.names .setText(dataList.get(position).getFullName());
+
+        String status = dataList.get(position).getStatus();
+
+        if (status.equals("Active"))
+            holder.status.setTextColor(Color.GREEN);
+
+        holder.status    .setText(status);
         holder.rookieYear.setText(dataList.get(position).getRookieYear().toString());
 
     }
+
 
     @Override
     public int getItemCount() {
