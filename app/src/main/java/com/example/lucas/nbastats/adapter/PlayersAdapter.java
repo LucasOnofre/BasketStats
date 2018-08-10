@@ -2,6 +2,7 @@ package com.example.lucas.nbastats.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,9 +62,10 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.CustomVi
         String status = dataList.get(position).getStatus();
 
         if (status.equals("Active"))
-            holder.status.setTextColor(Color.GREEN);
+            holder.status.setTextColor(ContextCompat.getColor(context,R.color.green));
 
         holder.status    .setText(status);
+
         holder.rookieYear.setText(dataList.get(position).getRookieYear().toString());
 
     }

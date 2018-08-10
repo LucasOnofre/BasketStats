@@ -18,25 +18,16 @@ import com.example.lucas.nbastats.fragment.PlayersFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeamInfo extends AppCompatActivity {
+public class TeamInfo extends BaseActivity {
 
-    private Toolbar   toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teaminfo);
-
-
-        //Configurando a toolbar
-        toolbar =  findViewById(R.id.toolbar);
-        toolbar.setTitle(getSavedData());
-        setSupportActionBar(toolbar);
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setupToolbar(getSavedData());
 
         viewPager = findViewById(R.id.viewpager);
         setupViewPager(viewPager);

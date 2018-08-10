@@ -2,9 +2,11 @@ package com.example.lucas.nbastats.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Fade;
 import android.widget.TextView;
 import com.example.lucas.nbastats.R;
 import com.example.lucas.nbastats.cardPager.CardItem;
@@ -107,8 +109,10 @@ public class ChooseTeamActivity extends AppCompatActivity {
 
             saveInDeviceValues(initial,nameTeam);
 
+
             Intent intent = new Intent(ChooseTeamActivity.this,TeamInfo.class);
             startActivity(intent);
+            overridePendingTransition(R.anim.transition_from_activity, 0);
         }
     };
 
@@ -121,7 +125,7 @@ public class ChooseTeamActivity extends AppCompatActivity {
         editor.putString("teamName",nameTeam);
         editor.commit();
 
-    }
 
+    }
 }
 

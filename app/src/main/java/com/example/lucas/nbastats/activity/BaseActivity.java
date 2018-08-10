@@ -8,10 +8,23 @@ import com.example.lucas.nbastats.R;
 
 public class BaseActivity extends AppCompatActivity {
 
+    protected Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_base);
 
+    }
+
+    /**
+     * Configura a toolbar, se existir no layout
+     */
+    protected void setupToolbar(String title){
+        toolbar =  findViewById(R.id.toolbar);
+        if (toolbar != null){
+            toolbar.setTitle(title);
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 }
