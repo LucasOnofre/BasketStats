@@ -17,7 +17,7 @@ public class Player {
     private String team;
 
 
-    public Player(Integer rookieYear, String fullName, String birthDate, String status, String team) {
+    public Player(Integer rookieYear, String fullName, String status, String team) {
         this.rookieYear = rookieYear;
         this.fullName   = fullName;
         this.status     = status;
