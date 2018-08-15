@@ -70,7 +70,6 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.CustomVi
 
     }
 
-
     @Override
     public int getItemCount() {
         return dataList.size();

@@ -20,20 +20,22 @@
 
         <TextView
             android:id="@+id/homeTeamInitial"
-            android:layout_width="50dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="PHI"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:textStyle="bold" />
 
         <TextView
+
             android:id="@+id/homeTeamScore"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text="100"
-            android:textSize="20dp" />
+            android:textSize="22dp"
+            android:gravity="right"/>
     </LinearLayout>
 
     <TextView
@@ -67,31 +69,35 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:text="100"
-            android:textSize="20dp" />
+            android:textSize="22dp"
+            android:gravity="left"/>
 
         <TextView
             android:id="@+id/alwayTeamInitial"
-            android:layout_width="50dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/alwayTeamScore"
             android:gravity="center"
             android:text="PHI"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:textStyle="bold" />
     </LinearLayout>
+
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.98" />
     <android.support.constraint.Guideline
         android:id="@+id/guideline3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.05" />
+        app:layout_constraintGuide_percent="0.02" />
+
+
 
 
 </android.support.constraint.ConstraintLayout>

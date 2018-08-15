@@ -61,10 +61,32 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHo
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
 
+
+
         holder.choosenTeamInitial.setText(dataList.get(position).getHomeTeam().getTeamId());
         holder.choosenTeamScore  .setText(String.valueOf(dataList.get(position).getHomeTeam().getFinalScore()));
+
         holder.otherTeamInitial  .setText(dataList.get(position).getAwayTeam().getTeamId());
         holder.otherTeamScore    .setText(String.valueOf(dataList.get(position).getAwayTeam().getFinalScore()));
+
+
+        int alwayScore = dataList.get(position).getAwayTeam().getFinalScore();
+        int homeScore  = dataList.get(position).getHomeTeam().getFinalScore();
+
+        if (homeScore > alwayScore){
+
+            holder.choosenTeamScore .setTextColor(ContextCompat.getColor(context,R.color.green));
+            holder.otherTeamScore   .setTextColor(ContextCompat.getColor(context,R.color.red));
+
+
+        }else if (homeScore < alwayScore) {
+
+            holder.otherTeamScore.setTextColor(ContextCompat.getColor(context, R.color.green));
+            holder.choosenTeamScore.setTextColor(ContextCompat.getColor(context, R.color.red));
+        }
+
+        holder.otherTeamScore    .setText(String.valueOf(dataList.get(position).getAwayTeam().getFinalScore()));
+        holder.choosenTeamScore  .setText(String.valueOf(dataList.get(position).getHomeTeam().getFinalScore()));
 
 
 

@@ -8,5 +8,6 @@
     <color name="navigationBarColor">#000000</color>
     <color name="colorAccent">#c8e8ff</color>
     <color name="green">#388e3c</color>
+    <color name="red">#b31313</color>
 
 </resources>
