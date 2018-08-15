@@ -12,12 +12,14 @@ import com.example.lucas.nbastats.R;
 import com.example.lucas.nbastats.model.Game;
 import com.example.lucas.nbastats.model.Player;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHolder> {
 
     private List<Game> dataList;
-    private Context context;
+    private Context    context;
 
     public GamesAdapter(Context context, List<Game> dataList) {
         this.context = context;
@@ -27,14 +29,22 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHo
     class CustomViewHolder extends RecyclerView.ViewHolder {
 
         View view;
-
-
+        TextView choosenTeamInitial;
+        TextView choosenTeamScore;
+        TextView otherTeamInitial;
+        TextView otherTeamScore;
 
         CustomViewHolder(View itemView) {
 
             super(itemView);
 
-            view        = itemView;
+            view                = itemView;
+            otherTeamScore      = view.findViewById(R.id.alwayTeamScore);
+            choosenTeamScore    = view.findViewById(R.id.homeTeamScore);
+            otherTeamInitial    = view.findViewById(R.id.alwayTeamInitial);
+            choosenTeamInitial  = view.findViewById(R.id.homeTeamInitial);
+
+
 
         }
     }
@@ -43,13 +53,20 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHo
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.line_players, parent, false);
+        View view = layoutInflater.inflate(R.layout.line_games, parent, false);
 
         return new CustomViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
+
+        holder.choosenTeamInitial.setText(dataList.get(position).getHomeTeam().getTeamId());
+        holder.choosenTeamScore  .setText(String.valueOf(dataList.get(position).getHomeTeam().getFinalScore()));
+        holder.otherTeamInitial  .setText(dataList.get(position).getAwayTeam().getTeamId());
+        holder.otherTeamScore    .setText(String.valueOf(dataList.get(position).getAwayTeam().getFinalScore()));
+
+
 
     }
 

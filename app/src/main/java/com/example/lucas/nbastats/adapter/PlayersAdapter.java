@@ -20,7 +20,7 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.CustomVi
     private Context context;
 
     public PlayersAdapter(Context context, List<Player> dataList) {
-        this.context = context;
+        this.context  = context;
         this.dataList = dataList;
     }
 

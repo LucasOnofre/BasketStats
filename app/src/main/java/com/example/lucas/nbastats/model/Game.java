@@ -54,62 +54,63 @@ public class Game {
     public void setAwayTeam(AwayTeam awayTeam) {
         this.awayTeam = awayTeam;
     }
-}
 
-class HomeTeam {
-    @SerializedName("teamID")
-    private String teamId;
+    public class HomeTeam {
+        @SerializedName("teamID")
+        private String teamId;
 
-    @SerializedName("finalScore")
-    private int finalScore;
+        @SerializedName("finalScore")
+        private int finalScore;
 
-    public HomeTeam(String teamId, int finalScore) {
-        this.teamId = teamId;
-        this.finalScore = finalScore;
+        public HomeTeam(String teamId, int finalScore) {
+            this.teamId = teamId;
+            this.finalScore = finalScore;
+        }
+
+        public String getTeamId() {
+            return teamId;
+        }
+
+        public void setTeamId(String teamId) {
+            this.teamId = teamId;
+        }
+
+        public int getFinalScore() {
+            return finalScore;
+        }
+
+        public void setFinalScore(int finalScore) {
+            this.finalScore = finalScore;
+        }
     }
 
-    public String getTeamId() {
-        return teamId;
-    }
 
-    public void setTeamId(String teamId) {
-        this.teamId = teamId;
-    }
+    public class AwayTeam {
+        @SerializedName("teamID")
+        private String teamId;
 
-    public int getFinalScore() {
-        return finalScore;
-    }
+        @SerializedName("finalScore")
+        private int finalScore;
 
-    public void setFinalScore(int finalScore) {
-        this.finalScore = finalScore;
-    }
-}
+        public AwayTeam(String teamId, int finalScore) {
+            this.teamId = teamId;
+            this.finalScore = finalScore;
+        }
 
-class AwayTeam {
-    @SerializedName("teamID")
-    private String teamId;
+        public String getTeamId() {
+            return teamId;
+        }
 
-    @SerializedName("finalScore")
-    private int finalScore;
+        public void setTeamId(String teamId) {
+            this.teamId = teamId;
+        }
 
-    public AwayTeam(String teamId, int finalScore) {
-        this.teamId = teamId;
-        this.finalScore = finalScore;
-    }
+        public int getFinalScore() {
+            return finalScore;
+        }
 
-    public String getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(String teamId) {
-        this.teamId = teamId;
-    }
-
-    public int getFinalScore() {
-        return finalScore;
-    }
-
-    public void setFinalScore(int finalScore) {
-        this.finalScore = finalScore;
+        public void setFinalScore(int finalScore) {
+            this.finalScore = finalScore;
+        }
     }
 }
