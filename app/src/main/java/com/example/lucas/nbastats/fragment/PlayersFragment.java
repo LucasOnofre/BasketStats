@@ -25,12 +25,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PlayersFragment extends Fragment {
+public class PlayersFragment extends BaseFragment {
 
     private RecyclerView recyclerView;
     private PlayersAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ProgressDialog progressDialog;
 
     public PlayersFragment() {
         // Required empty public constructor
@@ -54,9 +53,7 @@ public class PlayersFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         //Progress dialog que aparece antes da chamada e some após a mesma ser realizada
-        progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+        final ProgressDialog progressDialog = generateProgressDialog(getContext());
 
 
 

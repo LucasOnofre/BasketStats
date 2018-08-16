@@ -17,11 +17,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private PlayersAdapter adapter;
     private RecyclerView  recyclerView;
-    private ProgressDialog progressDialog;
     private RecyclerView.LayoutManager layoutManager;
 
 
@@ -35,9 +34,7 @@ public class MainActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(MainActivity.this);
         recyclerView.setLayoutManager(layoutManager);
 
-        progressDialog = new ProgressDialog(MainActivity.this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+        final ProgressDialog progressDialog = generateProgressDialog(MainActivity.this);
 
         new RequestAllPlayers().getAllPlayers().enqueue(new Callback<List<Player>>() {
             @Override
@@ -55,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void GenerateDataList(List<Player> playersList){
         adapter      = new PlayersAdapter(this,playersList);
         recyclerView.setAdapter(adapter);

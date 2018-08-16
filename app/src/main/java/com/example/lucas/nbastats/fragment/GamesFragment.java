@@ -1,6 +1,7 @@
 package com.example.lucas.nbastats.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,11 +26,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class GamesFragment extends Fragment {
+public class GamesFragment extends BaseFragment {
     private RecyclerView recyclerView;
     private GamesAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ProgressDialog progressDialog;
 
 
     public GamesFragment() {
@@ -52,9 +52,7 @@ public class GamesFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         //Progress dialog que aparece antes da chamada e some após a mesma ser realizada
-        progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+        final ProgressDialog progressDialog = generateProgressDialog(getContext());
 
         //Retorna os dados salvos dos times ao serem escolhidos
         SharedPreferences pref = getContext().getSharedPreferences("MyPref", 0);

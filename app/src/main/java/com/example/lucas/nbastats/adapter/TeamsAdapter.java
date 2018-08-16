@@ -26,7 +26,6 @@ public class TeamsAdapter extends RecyclerView.Adapter<TeamsAdapter.CustomViewHo
         View      view;
         TextView  teams;
 
-
         CustomViewHolder(View itemView) {
 
             super(itemView);
@@ -46,7 +45,7 @@ public class TeamsAdapter extends RecyclerView.Adapter<TeamsAdapter.CustomViewHo
     @Override
     public void onBindViewHolder(CustomViewHolder holder, int position) {
 
-        holder.teams.setText((CharSequence) dataList.get(position));
+        holder.teams.setText( dataList.get(position));
     }
 
     @Override

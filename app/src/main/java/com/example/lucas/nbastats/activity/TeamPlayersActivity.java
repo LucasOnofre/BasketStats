@@ -18,13 +18,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TeamPlayersActivity extends AppCompatActivity {
+public class TeamPlayersActivity extends BaseActivity {
 
-
-    private Toolbar toolbar;
     private PlayersAdapter adapter;
     private RecyclerView recyclerView;
-    private ProgressDialog progressDialog;
     private RecyclerView.LayoutManager layoutManager;
 
     @Override
@@ -38,22 +35,18 @@ public class TeamPlayersActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(TeamPlayersActivity.this);
         recyclerView.setLayoutManager(layoutManager);
 
+        //Recebe as informações vindas da ChooseTeamActivity
         String teamName     = getIntent().getStringExtra("teamName");
         String teamInitial  = getIntent().getStringExtra("teamInitials");
 
-        //Configurando a toolbar
-        toolbar = findViewById(R.id.toolbar_team_players);
-        toolbar.setTitle(teamName);
-        setSupportActionBar(toolbar);
-
+        //Configura a toolbar vinda da Base
+        setupToolbar(teamName);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
         //Progress dialog que aparece antes da chamada e some após a mesma ser realizada
-        progressDialog = new ProgressDialog(TeamPlayersActivity.this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
+        final ProgressDialog progressDialog = generateProgressDialog(TeamPlayersActivity.this);
 
         //Faz o request passando como parametro a sigla do time, que vem da ChooseTeamActivity
         new RequestPlayer().getPlayersFrom(teamInitial).enqueue(new Callback<List<Player>>() {

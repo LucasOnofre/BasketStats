@@ -62,7 +62,6 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHo
     public void onBindViewHolder(CustomViewHolder holder, int position) {
 
 
-
         holder.choosenTeamInitial.setText(dataList.get(position).getHomeTeam().getTeamId());
         holder.choosenTeamScore  .setText(String.valueOf(dataList.get(position).getHomeTeam().getFinalScore()));
 

@@ -29,7 +29,6 @@ public class ChooseTeamActivity extends BaseActivity {
 
         teams = getTeamInfo();
 
-
         viewPager   = findViewById(R.id.viewPager);
 
         cardAdapter = new CardPagerAdapter(onTeamClickListener);
