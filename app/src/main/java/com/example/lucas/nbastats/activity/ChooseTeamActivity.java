@@ -7,20 +7,23 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.Fade;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.lucas.nbastats.R;
 import com.example.lucas.nbastats.cardPager.CardItem;
 import com.example.lucas.nbastats.cardPager.CardPagerAdapter;
 import com.example.lucas.nbastats.cardPager.ShadowTransformer;
 import com.example.lucas.nbastats.model.Team;
+import com.squareup.picasso.Picasso;
 
 public class ChooseTeamActivity extends BaseActivity {
 
 
-    Team []                   teams;
+    private Team []           teams;
     private ViewPager         viewPager;
     private CardPagerAdapter  cardAdapter;
     private ShadowTransformer cardShadowTransformer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,11 @@ public class ChooseTeamActivity extends BaseActivity {
         viewPager.setPageTransformer(false, cardShadowTransformer);
 
         ((TextView)findViewById(R.id.team_name)).setText(teams[0].getFullName());
+
+
+
+
+
     }
 
     /**

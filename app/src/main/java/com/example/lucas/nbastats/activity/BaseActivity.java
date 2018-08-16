@@ -63,7 +63,8 @@ public class BaseActivity extends AppCompatActivity {
                 new Team("San Antonio Spurs"     , "SAS"    , R.drawable.san),
                 new Team("Toronto Raptors"       , "TOR"    , R.drawable.toronto),
                 new Team("Utah Jazz"             , "UTA"    , R.drawable.uta),
-                new Team("Washington Wizards"    , "WAS"    , R.drawable.washington)};
+                new Team("Washington Wizards"    , "WAS"    , R.drawable.washington)
+        };
 
         return teams;
     }

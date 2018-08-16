@@ -18,6 +18,14 @@
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/scoreX">
 
+
+
+        <ImageView
+            android:id="@+id/homeTeamLogo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"/>
+
         <TextView
             android:id="@+id/homeTeamInitial"
             android:layout_width="60dp"
@@ -81,6 +89,15 @@
             android:text="PHI"
             android:textSize="25dp"
             android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/alwayTeamLogo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"/>
+
+
+
     </LinearLayout>
 
 

@@ -6,11 +6,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageSwitcher;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.lucas.nbastats.R;
 import com.example.lucas.nbastats.model.Game;
 import com.example.lucas.nbastats.model.Player;
+import com.example.lucas.nbastats.model.Team;
+import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
@@ -19,7 +23,7 @@ import java.util.List;
 public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHolder> {
 
     private List<Game> dataList;
-    private Context    context;
+    private Context context;
 
     public GamesAdapter(Context context, List<Game> dataList) {
         this.context = context;
@@ -29,6 +33,8 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHo
     class CustomViewHolder extends RecyclerView.ViewHolder {
 
         View view;
+        ImageView homeTeamLogo;
+        ImageView alwayTeamLogo;
         TextView choosenTeamInitial;
         TextView choosenTeamScore;
         TextView otherTeamInitial;
@@ -38,12 +44,13 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHo
 
             super(itemView);
 
-            view                = itemView;
-            otherTeamScore      = view.findViewById(R.id.alwayTeamScore);
-            choosenTeamScore    = view.findViewById(R.id.homeTeamScore);
-            otherTeamInitial    = view.findViewById(R.id.alwayTeamInitial);
-            choosenTeamInitial  = view.findViewById(R.id.homeTeamInitial);
-
+            view = itemView;
+            homeTeamLogo = view.findViewById(R.id.homeTeamLogo);
+            alwayTeamLogo = view.findViewById(R.id.alwayTeamLogo);
+            otherTeamScore = view.findViewById(R.id.alwayTeamScore);
+            choosenTeamScore = view.findViewById(R.id.homeTeamScore);
+            otherTeamInitial = view.findViewById(R.id.alwayTeamInitial);
+            choosenTeamInitial = view.findViewById(R.id.homeTeamInitial);
 
 
         }
@@ -62,31 +69,54 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHo
     public void onBindViewHolder(CustomViewHolder holder, int position) {
 
 
-        holder.choosenTeamInitial.setText(dataList.get(position).getHomeTeam().getTeamId());
-        holder.choosenTeamScore  .setText(String.valueOf(dataList.get(position).getHomeTeam().getFinalScore()));
+        Team[] teams = getTeamInfo();
 
-        holder.otherTeamInitial  .setText(dataList.get(position).getAwayTeam().getTeamId());
-        holder.otherTeamScore    .setText(String.valueOf(dataList.get(position).getAwayTeam().getFinalScore()));
+
+        holder.choosenTeamInitial.setText(dataList.get(position).getHomeTeam().getTeamId());
+        holder.choosenTeamScore.setText(String.valueOf(dataList.get(position).getHomeTeam().getFinalScore()));
+
+        holder.otherTeamInitial.setText(dataList.get(position).getAwayTeam().getTeamId());
+        holder.otherTeamScore.setText(String.valueOf(dataList.get(position).getAwayTeam().getFinalScore()));
 
 
         int alwayScore = dataList.get(position).getAwayTeam().getFinalScore();
-        int homeScore  = dataList.get(position).getHomeTeam().getFinalScore();
+        int homeScore = dataList.get(position).getHomeTeam().getFinalScore();
 
-        if (homeScore > alwayScore){
+        if (homeScore > alwayScore) {
 
-            holder.choosenTeamScore .setTextColor(ContextCompat.getColor(context,R.color.green));
-            holder.otherTeamScore   .setTextColor(ContextCompat.getColor(context,R.color.red));
+            holder.choosenTeamScore.setTextColor(ContextCompat.getColor(context, R.color.green));
+            holder.otherTeamScore.setTextColor(ContextCompat.getColor(context, R.color.red));
 
 
-        }else if (homeScore < alwayScore) {
+        } else if (homeScore < alwayScore) {
 
             holder.otherTeamScore.setTextColor(ContextCompat.getColor(context, R.color.green));
             holder.choosenTeamScore.setTextColor(ContextCompat.getColor(context, R.color.red));
         }
 
-        holder.otherTeamScore    .setText(String.valueOf(dataList.get(position).getAwayTeam().getFinalScore()));
-        holder.choosenTeamScore  .setText(String.valueOf(dataList.get(position).getHomeTeam().getFinalScore()));
+        holder.otherTeamScore.setText(String.valueOf(dataList.get(position).getAwayTeam().getFinalScore()));
+        holder.choosenTeamScore.setText(String.valueOf(dataList.get(position).getHomeTeam().getFinalScore()));
 
+
+//        int homeTeamLogoResized = teams[position].getLogo();
+//
+//        Picasso.get()
+//                .load(homeTeamLogoResized)
+//                .resize(50, 50)
+//                .centerCrop()
+//                .into(holder.homeTeamLogo);
+//
+//        int alwayTeamLogoResized = teams[position].getLogo();
+//
+//        Picasso.get()
+//                .load(alwayTeamLogoResized)
+//                .resize(50, 50)
+//                .centerCrop()
+//                .into(holder.homeTeamLogo);
+//
+//
+//        holder.homeTeamLogo.setImageResource(homeTeamLogoResized);
+//        holder.alwayTeamLogo.setImageResource(alwayTeamLogoResized);
 
 
     }
@@ -95,5 +125,42 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHo
     @Override
     public int getItemCount() {
         return dataList.size();
+    }
+
+    protected Team[] getTeamInfo() {
+
+        //Array com todos os times, contendo nome,sigla e logo
+        Team[] teams = new Team[]{
+                new Team("Atlanta Hawks", "ATL", R.drawable.atlanta),
+                new Team("Brooklyn Nets", "BKN", R.drawable.brooklyn),
+                new Team("Boston Celtics", "BOS", R.drawable.boston),
+                new Team("Chicago Bulls", "CHI", R.drawable.chicago),
+                new Team("Cleveland Cavaliers", "CLE", R.drawable.cleveland),
+                new Team("Dallas Mavericks", "DAL", R.drawable.dallas),
+                new Team("Detroit Pistons", "DET", R.drawable.detroit),
+                new Team("Golden State Warriors", "GSW", R.drawable.golden),
+                new Team("Houston Rockets", "HOU", R.drawable.houston),
+                new Team("Indiana Pacers", "IND", R.drawable.indiana),
+                new Team("Los Angeles Clippers", "LAC", R.drawable.clippers),
+                new Team("Los Angeles Lakers", "LAL", R.drawable.lakers),
+                new Team("Memphis Grizzlies", "MEM", R.drawable.memphis),
+                new Team("Miami Heat", "MIA", R.drawable.miami),
+                new Team("Milwaukee Bucks", "MIL", R.drawable.milwaukee),
+                new Team("Minnesota Timberwolves", "MIN", R.drawable.minnesota),
+                new Team("New Orleans Pelicans", "NOP", R.drawable.pelicans),
+                new Team("New York Knicks", "NYK", R.drawable.knicks),
+                new Team("Oklahoma City Thunder", "OKC", R.drawable.oklahoma),
+                new Team("Orlando Magic", "ORL", R.drawable.orlando),
+                new Team("Philadelphia 76ers", "PHI", R.drawable.philidephia),
+                new Team("Phoenix Suns", "PHX", R.drawable.phoenix),
+                new Team("Portland Trail Blazers", "POR", R.drawable.portland),
+                new Team("Sacramento Kings", "SAC", R.drawable.sacramento),
+                new Team("San Antonio Spurs", "SAS", R.drawable.san),
+                new Team("Toronto Raptors", "TOR", R.drawable.toronto),
+                new Team("Utah Jazz", "UTA", R.drawable.uta),
+                new Team("Washington Wizards", "WAS", R.drawable.washington)
+        };
+
+        return teams;
     }
 }
