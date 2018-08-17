@@ -1,5 +1,6 @@
 package com.example.lucas.nbastats.activity;
 
+import android.animation.ObjectAnimator;
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,20 +47,21 @@ public class TeamPlayersActivity extends BaseActivity {
 
 
         //Progress dialog que aparece antes da chamada e some após a mesma ser realizada
-        final ProgressDialog progressDialog = generateProgressDialog(TeamPlayersActivity.this);
+     //   final ObjectAnimator animator = generateProgressBar();
+      //  animator.start();
 
         //Faz o request passando como parametro a sigla do time, que vem da ChooseTeamActivity
         new RequestPlayer().getPlayersFrom(teamInitial).enqueue(new Callback<List<Player>>() {
             @Override
             public void onResponse(Call<List<Player>> call, Response<List<Player>> response) {
-                progressDialog.dismiss();
+               // animator.end();
                 GenerateDataList(response.body());
             }
 
             @Override
             public void onFailure(Call<List<Player>> call, Throwable t) {
+               // animator.end();
 
-                progressDialog.dismiss();
                 Log.i("Error: ",t.toString());
                 Toast.makeText(TeamPlayersActivity.this, "Error, please try again!", Toast.LENGTH_SHORT).show();
             }

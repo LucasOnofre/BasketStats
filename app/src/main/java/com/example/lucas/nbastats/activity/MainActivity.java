@@ -1,11 +1,14 @@
 package com.example.lucas.nbastats.activity;
 
+import android.animation.ObjectAnimator;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.lucas.nbastats.R;
@@ -34,7 +37,10 @@ public class MainActivity extends BaseActivity {
         layoutManager = new LinearLayoutManager(MainActivity.this);
         recyclerView.setLayoutManager(layoutManager);
 
-        final ProgressDialog progressDialog = generateProgressDialog(MainActivity.this);
+
+        final ProgressDialog progressDialog = generateProgressBar(MainActivity.this);
+
+
 
         new RequestAllPlayers().getAllPlayers().enqueue(new Callback<List<Player>>() {
             @Override
@@ -45,7 +51,6 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onFailure(Call<List<Player>> call, Throwable t) {
-
                 progressDialog.dismiss();
                 Log.i("Error: ",t.toString());
                 Toast.makeText(MainActivity.this, "Tente novamente...", Toast.LENGTH_SHORT).show();

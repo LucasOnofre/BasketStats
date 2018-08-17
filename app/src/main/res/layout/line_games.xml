@@ -1,120 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ffffff"
-    android:padding="5dp">
-
-    <LinearLayout
-        android:id="@+id/block_home_team"
-        android:layout_width="wrap_content"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimary"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="1dp"
+    app:cardUseCompatPadding="true"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
+    >
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left|center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/scoreX"
-        app:layout_constraintEnd_toStartOf="@+id/scoreX"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/scoreX">
+        android:background="#ffffff"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:id="@+id/block_home_team"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left|center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@+id/scoreX"
+            app:layout_constraintEnd_toStartOf="@+id/scoreX"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toTopOf="@+id/scoreX">
 
 
 
-        <ImageView
-            android:id="@+id/homeTeamLogo"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"/>
+            <ImageView
+                android:id="@+id/homeTeamLogo"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:id="@+id/homeTeamInitial"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="PHI"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <TextView
+
+                android:id="@+id/homeTeamScore"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="100"
+                android:textSize="20dp"
+                android:gravity="right"/>
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/homeTeamInitial"
-            android:layout_width="60dp"
+            android:id="@+id/scoreX"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="PHI"
-            android:textSize="25dp"
-            android:textStyle="bold" />
+            android:text="X"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-
-            android:id="@+id/homeTeamScore"
-            android:layout_width="40dp"
+        <LinearLayout
+            android:id="@+id/block_alway_team"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="100"
-            android:textSize="22dp"
-            android:gravity="right"/>
-    </LinearLayout>
+            android:gravity="left|center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/scoreX"
+            app:layout_constraintTop_toTopOf="@+id/scoreX">
 
-    <TextView
-        android:id="@+id/scoreX"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="X"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/alwayTeamScore"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:text="100"
+                android:textSize="20dp"
+                android:gravity="left"/>
 
-    <LinearLayout
-        android:id="@+id/block_alway_team"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="left|center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/scoreX"
-        app:layout_constraintTop_toTopOf="@+id/scoreX">
+            <TextView
+                android:id="@+id/alwayTeamInitial"
+                android:layout_width="35dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/alwayTeamScore"
+                android:gravity="center"
+                android:text="PHI"
+                android:textSize="16dp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/alwayTeamScore"
-            android:layout_width="40dp"
+            <ImageView
+                android:id="@+id/alwayTeamLogo"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"/>
+
+
+
+        </LinearLayout>
+
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:text="100"
-            android:textSize="22dp"
-            android:gravity="left"/>
-
-        <TextView
-            android:id="@+id/alwayTeamInitial"
-            android:layout_width="60dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.98" />
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/alwayTeamScore"
-            android:gravity="center"
-            android:text="PHI"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/alwayTeamLogo"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"/>
-
-
-
-    </LinearLayout>
-
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.98" />
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.02" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.02" />
 
 
 
 
 </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>
+

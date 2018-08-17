@@ -11,8 +11,8 @@ import com.example.lucas.nbastats.model.Team;
 
 public class BaseActivity extends AppCompatActivity {
 
-    protected Toolbar toolbar;
-    private static ProgressDialog progressDialog;
+    protected   Toolbar toolbar;
+    private     ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +39,12 @@ public class BaseActivity extends AppCompatActivity {
                 new Team("Atlanta Hawks"         , "ATL"    , R.drawable.atlanta),
                 new Team("Brooklyn Nets"         , "BKN"    , R.drawable.brooklyn),
                 new Team("Boston Celtics"        , "BOS"    , R.drawable.boston),
+                new Team("Charlotte Hornets"     , "CHA"    , R.drawable.charlotte),
                 new Team("Chicago Bulls"         , "CHI"    , R.drawable.chicago),
                 new Team("Cleveland Cavaliers"   , "CLE"    , R.drawable.cleveland),
                 new Team("Dallas Mavericks"      , "DAL"    , R.drawable.dallas),
                 new Team("Detroit Pistons"       , "DET"    , R.drawable.detroit),
+                new Team("Denver Nugguets"       , "DEN"    , R.drawable.ic_denver),
                 new Team("Golden State Warriors" , "GSW"    , R.drawable.golden),
                 new Team("Houston Rockets"       , "HOU"    , R.drawable.houston),
                 new Team("Indiana Pacers"        , "IND"    , R.drawable.indiana),
@@ -69,10 +71,14 @@ public class BaseActivity extends AppCompatActivity {
         return teams;
     }
 
-    protected ProgressDialog generateProgressDialog(Context context) {
+    protected ProgressDialog generateProgressBar(Context context) {
         progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading...");
         progressDialog.show();
+
         return progressDialog;
+
+
+
+
     }
 }

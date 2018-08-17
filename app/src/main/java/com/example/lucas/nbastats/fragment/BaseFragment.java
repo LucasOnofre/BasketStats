@@ -11,7 +11,6 @@ public class BaseFragment extends android.support.v4.app.Fragment {
 
     protected ProgressDialog generateProgressDialog(Context context) {
         progressDialog = new ProgressDialog(context);
-        progressDialog.setMessage("Loading...");
         progressDialog.show();
 
         return progressDialog;

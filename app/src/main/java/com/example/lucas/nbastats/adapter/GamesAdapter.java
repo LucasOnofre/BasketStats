@@ -6,17 +6,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.lucas.nbastats.R;
 import com.example.lucas.nbastats.model.Game;
-import com.example.lucas.nbastats.model.Player;
 import com.example.lucas.nbastats.model.Team;
-import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -69,8 +64,6 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHo
     public void onBindViewHolder(CustomViewHolder holder, int position) {
 
 
-        Team[] teams = getTeamInfo();
-
 
         holder.choosenTeamInitial.setText(dataList.get(position).getHomeTeam().getTeamId());
         holder.choosenTeamScore.setText(String.valueOf(dataList.get(position).getHomeTeam().getFinalScore()));
@@ -80,13 +73,12 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHo
 
 
         int alwayScore = dataList.get(position).getAwayTeam().getFinalScore();
-        int homeScore = dataList.get(position).getHomeTeam().getFinalScore();
+        int homeScore  = dataList.get(position).getHomeTeam().getFinalScore();
 
         if (homeScore > alwayScore) {
 
             holder.choosenTeamScore.setTextColor(ContextCompat.getColor(context, R.color.green));
             holder.otherTeamScore.setTextColor(ContextCompat.getColor(context, R.color.red));
-
 
         } else if (homeScore < alwayScore) {
 
@@ -94,30 +86,15 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHo
             holder.choosenTeamScore.setTextColor(ContextCompat.getColor(context, R.color.red));
         }
 
-        holder.otherTeamScore.setText(String.valueOf(dataList.get(position).getAwayTeam().getFinalScore()));
-        holder.choosenTeamScore.setText(String.valueOf(dataList.get(position).getHomeTeam().getFinalScore()));
+        holder.otherTeamScore   .setText(String.valueOf(dataList.get(position).getAwayTeam().getFinalScore()));
+        holder.choosenTeamScore .setText(String.valueOf(dataList.get(position).getHomeTeam().getFinalScore()));
+
+        int homelogo  = getTeamLogo(dataList.get(position).getHomeTeam().getTeamId());
+        int alwayLogo = getTeamLogo(dataList.get(position).getAwayTeam().getTeamId());
 
 
-//        int homeTeamLogoResized = teams[position].getLogo();
-//
-//        Picasso.get()
-//                .load(homeTeamLogoResized)
-//                .resize(50, 50)
-//                .centerCrop()
-//                .into(holder.homeTeamLogo);
-//
-//        int alwayTeamLogoResized = teams[position].getLogo();
-//
-//        Picasso.get()
-//                .load(alwayTeamLogoResized)
-//                .resize(50, 50)
-//                .centerCrop()
-//                .into(holder.homeTeamLogo);
-//
-//
-//        holder.homeTeamLogo.setImageResource(homeTeamLogoResized);
-//        holder.alwayTeamLogo.setImageResource(alwayTeamLogoResized);
-
+        holder.homeTeamLogo .setImageResource(homelogo);
+        holder.alwayTeamLogo.setImageResource(alwayLogo);
 
     }
 
@@ -127,17 +104,19 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHo
         return dataList.size();
     }
 
-    protected Team[] getTeamInfo() {
+    protected int getTeamLogo(String initial) {
 
         //Array com todos os times, contendo nome,sigla e logo
         Team[] teams = new Team[]{
                 new Team("Atlanta Hawks", "ATL", R.drawable.atlanta),
                 new Team("Brooklyn Nets", "BKN", R.drawable.brooklyn),
                 new Team("Boston Celtics", "BOS", R.drawable.boston),
+                new Team("Charlotte Hornets", "CHA", R.drawable.charlotte),
                 new Team("Chicago Bulls", "CHI", R.drawable.chicago),
                 new Team("Cleveland Cavaliers", "CLE", R.drawable.cleveland),
                 new Team("Dallas Mavericks", "DAL", R.drawable.dallas),
                 new Team("Detroit Pistons", "DET", R.drawable.detroit),
+                new Team("Denver Nugguets", "DEN", R.drawable.ic_denver),
                 new Team("Golden State Warriors", "GSW", R.drawable.golden),
                 new Team("Houston Rockets", "HOU", R.drawable.houston),
                 new Team("Indiana Pacers", "IND", R.drawable.indiana),
@@ -161,6 +140,13 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHo
                 new Team("Washington Wizards", "WAS", R.drawable.washington)
         };
 
-        return teams;
+        for (Team team: teams){
+            if (initial.equals( team.getInitials())){
+                return team.getLogo();
+            }
+
+        }
+        return 0;
     }
+
 }
