@@ -1,5 +1,6 @@
 package com.example.lucas.nbastats.activity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -7,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.transition.Fade;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.lucas.nbastats.R;
@@ -16,6 +18,8 @@ import com.example.lucas.nbastats.cardPager.ShadowTransformer;
 import com.example.lucas.nbastats.model.Team;
 import com.squareup.picasso.Picasso;
 
+import java.util.Calendar;
+
 public class ChooseTeamActivity extends BaseActivity {
 
 
@@ -23,12 +27,15 @@ public class ChooseTeamActivity extends BaseActivity {
     private ViewPager         viewPager;
     private CardPagerAdapter  cardAdapter;
     private ShadowTransformer cardShadowTransformer;
+    Calendar calendar;
+    DatePickerDialog datePickerDialog;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_team);
+
 
         teams = getTeamInfo();
 
@@ -49,10 +56,6 @@ public class ChooseTeamActivity extends BaseActivity {
         viewPager.setPageTransformer(false, cardShadowTransformer);
 
         ((TextView)findViewById(R.id.team_name)).setText(teams[0].getFullName());
-
-
-
-
 
     }
 
@@ -90,9 +93,17 @@ public class ChooseTeamActivity extends BaseActivity {
             saveInDeviceValues(initial,nameTeam);
 
 
-            Intent intent = new Intent(ChooseTeamActivity.this,TeamInfo.class);
-            startActivity(intent);
-            overridePendingTransition(R.anim.transition_from_activity, 0);
+//            Intent intent = new Intent(ChooseTeamActivity.this,TeamInfo.class);
+//            startActivity(intent);
+//            overridePendingTransition(R.anim.transition_from_activity, 0);
+
+        }
+    };
+
+    private DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+
         }
     };
 
@@ -107,5 +118,11 @@ public class ChooseTeamActivity extends BaseActivity {
 
 
     }
+
+
+
+
+
+
 }
 

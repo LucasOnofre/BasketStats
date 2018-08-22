@@ -7,10 +7,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.lucas.nbastats.R;
 import com.example.lucas.nbastats.model.Player;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.RequestCreator;
 
 import java.util.List;
 
@@ -26,22 +30,24 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.CustomVi
 
     class CustomViewHolder extends RecyclerView.ViewHolder {
 
-        View view;
-        TextView names;
-        TextView teams;
-        TextView status;
-        TextView rookieYear;
+        View      view;
+        TextView  name;
+        TextView  teams;
+        TextView  status;
+        TextView  rookieYear;
+        ImageView playerHeadshot;
 
 
         CustomViewHolder(View itemView) {
 
             super(itemView);
 
-            view        = itemView;
-            names       = view.findViewById(R.id.name);
-            teams       = view.findViewById(R.id.team);
-            status      = view.findViewById(R.id.status);
-            rookieYear  = view.findViewById(R.id.rookieYear);
+            view            = itemView;
+            name           = view.findViewById(R.id.name);
+            teams           = view.findViewById(R.id.team);
+            status          = view.findViewById(R.id.status);
+            rookieYear      = view.findViewById(R.id.rookieYear);
+            playerHeadshot  = view.findViewById(R.id.player_headAhot);
         }
     }
 
@@ -55,9 +61,27 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.CustomVi
     }
 
     @Override
-    public void onBindViewHolder(CustomViewHolder holder, int position) {
+    public void onBindViewHolder(final CustomViewHolder holder, int position) {
 
-        holder.names .setText(dataList.get(position).getFullName());
+        String firstName    = dataList.get(position).getFirstName();
+        String lastName     = dataList.get(position).getLastName();
+
+        Picasso.get().load("https://nba-players.herokuapp.com/players/" + lastName+ "/" + firstName).into(holder.playerHeadshot, new Callback() {
+            @Override
+            public void onSuccess() {
+                holder.playerHeadshot.setBackgroundColor(Color.WHITE);
+
+            }
+
+            @Override
+            public void onError(Exception e) {
+
+
+                holder.playerHeadshot.setBackgroundColor(Color.GRAY);
+            }
+        });
+
+        holder.name .setText(dataList.get(position).getFullName());
 
         String status = dataList.get(position).getStatus();
 

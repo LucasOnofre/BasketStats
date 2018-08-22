@@ -17,6 +17,13 @@ public class Player {
     private String team;
 
 
+    @SerializedName("firstName")
+    private String firstName;
+
+    @SerializedName("lastName")
+    private String lastName;
+
+
     public Player(Integer rookieYear, String fullName, String status, String team) {
         this.rookieYear = rookieYear;
         this.fullName   = fullName;
@@ -54,5 +61,21 @@ public class Player {
 
     public void setTeam(String team) {
         this.team = team;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
