@@ -58,6 +58,9 @@ public class GamesFragment extends BaseFragment {
         SharedPreferences pref = getContext().getSharedPreferences("MyPref", 0);
         String teamInitials = pref.getString("teamInitials", null);
 
+        //Retorna os dados salvos dos times ao serem escolhidos
+        String yearSelected = pref.getString("yearSelected",null);
+
 
         //Faz o request passando como parametro a sigla do time e o ano , que vem da ChooseTeamActivity
         new RequestGamesFromTeam().getGamesFrom(teamInitials,2018).enqueue(new Callback<List<Game>>() {

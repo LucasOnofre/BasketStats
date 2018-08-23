@@ -1,22 +1,23 @@
 package com.example.lucas.nbastats.activity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.transition.Fade;
-import android.widget.DatePicker;
-import android.widget.ImageView;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.example.lucas.nbastats.R;
 import com.example.lucas.nbastats.cardPager.CardItem;
 import com.example.lucas.nbastats.cardPager.CardPagerAdapter;
 import com.example.lucas.nbastats.cardPager.ShadowTransformer;
 import com.example.lucas.nbastats.model.Team;
-import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
 
@@ -24,11 +25,13 @@ public class ChooseTeamActivity extends BaseActivity {
 
 
     private Team []           teams;
+
     private ViewPager         viewPager;
     private CardPagerAdapter  cardAdapter;
     private ShadowTransformer cardShadowTransformer;
-    Calendar calendar;
-    DatePickerDialog datePickerDialog;
+
+    private String[]          seasons = new String[]{"2015","2016","2017","2018"};
+
 
 
     @Override
@@ -56,6 +59,8 @@ public class ChooseTeamActivity extends BaseActivity {
         viewPager.setPageTransformer(false, cardShadowTransformer);
 
         ((TextView)findViewById(R.id.team_name)).setText(teams[0].getFullName());
+
+
 
     }
 
@@ -92,6 +97,7 @@ public class ChooseTeamActivity extends BaseActivity {
 
             saveInDeviceValues(initial,nameTeam);
 
+            generateAlertDialog();
 
 //            Intent intent = new Intent(ChooseTeamActivity.this,TeamInfo.class);
 //            startActivity(intent);
@@ -100,12 +106,6 @@ public class ChooseTeamActivity extends BaseActivity {
         }
     };
 
-    private DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-        @Override
-        public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-
-        }
-    };
 
     private void  saveInDeviceValues(String initial,String nameTeam){
 
@@ -119,10 +119,29 @@ public class ChooseTeamActivity extends BaseActivity {
 
     }
 
+    private AlertDialog.Builder generateAlertDialog(){
 
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Choose the season");
+        builder.setItems(seasons,null);
+        builder.show();
+        builder.setOnItemSelectedListener(new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
 
+                Toast.makeText(ChooseTeamActivity.this, "", Toast.LENGTH_SHORT).show();
+
+            }
+        };
+        return builder;
+    }
 
 
 }
 
+//                SharedPreferences pref          = getApplicationContext().getSharedPreferences("MyPref", 0);
+//                SharedPreferences.Editor editor = pref.edit();
+//
+//                editor.putString("yearSelected", yearSelected);
+//                editor.commit();
