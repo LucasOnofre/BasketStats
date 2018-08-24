@@ -63,7 +63,7 @@ public class GamesFragment extends BaseFragment {
 
 
         //Faz o request passando como parametro a sigla do time e o ano , que vem da ChooseTeamActivity
-        new RequestGamesFromTeam().getGamesFrom(teamInitials,2018).enqueue(new Callback<List<Game>>() {
+        new RequestGamesFromTeam().getGamesFrom(teamInitials,yearSelected).enqueue(new Callback<List<Game>>() {
             @Override
             public void onResponse(Call<List<Game>> call, Response<List<Game>> response) {
                 progressDialog.dismiss();

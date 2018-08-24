@@ -99,12 +99,15 @@ public class ChooseTeamActivity extends BaseActivity {
 
             generateAlertDialog();
 
-//            Intent intent = new Intent(ChooseTeamActivity.this,TeamInfo.class);
-//            startActivity(intent);
-//            overridePendingTransition(R.anim.transition_from_activity, 0);
-
         }
     };
+
+    private void openTeamInfo() {
+
+            Intent intent = new Intent(ChooseTeamActivity.this,TeamInfo.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.transition_from_activity, 0);
+    }
 
 
     private void  saveInDeviceValues(String initial,String nameTeam){
@@ -119,29 +122,33 @@ public class ChooseTeamActivity extends BaseActivity {
 
     }
 
-    private AlertDialog.Builder generateAlertDialog(){
+    private void generateAlertDialog(){
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Choose the season");
-        builder.setItems(seasons,null);
-        builder.show();
-        builder.setOnItemSelectedListener(new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
 
-                Toast.makeText(ChooseTeamActivity.this, "", Toast.LENGTH_SHORT).show();
+        builder.setItems(seasons, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int position) {
+
+
+                String yearSelected = seasons[position].toString();
+
+                SharedPreferences pref          = getApplicationContext().getSharedPreferences("MyPref", 0);
+                SharedPreferences.Editor editor = pref.edit();
+
+                editor.putString("yearSelected", yearSelected);
+                editor.commit();
 
             }
-        };
-        return builder;
+
+        });
+
+        builder.show();
+
+        openTeamInfo();
     }
 
 
 }
-
-//                SharedPreferences pref          = getApplicationContext().getSharedPreferences("MyPref", 0);
-//                SharedPreferences.Editor editor = pref.edit();
-//
-//                editor.putString("yearSelected", yearSelected);
-//                editor.commit();

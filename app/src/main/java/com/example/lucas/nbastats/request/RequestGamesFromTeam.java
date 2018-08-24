@@ -17,7 +17,7 @@ public class RequestGamesFromTeam{
         service = RetrofitClient.getRetrofitInstance().create(Service.class);
     }
 
-    public Call<List<Game>> getGamesFrom(String team, int year){
+    public Call<List<Game>> getGamesFrom(String team, String year){
     String endpoint = "/nba/v0/games/" + team + "/" + year ;
 
         return service.getGameFrom(endpoint);
