@@ -38,20 +38,16 @@ public class MainActivity extends BaseActivity {
         recyclerView.setLayoutManager(layoutManager);
 
 
-        final ProgressDialog progressDialog = generateProgressBar(MainActivity.this);
-
-
-
         new RequestAllPlayers().getAllPlayers().enqueue(new Callback<List<Player>>() {
             @Override
             public void onResponse(Call<List<Player>> call, Response<List<Player>> response) {
-                progressDialog.dismiss();
+
                 GenerateDataList(response.body());
             }
 
             @Override
             public void onFailure(Call<List<Player>> call, Throwable t) {
-                progressDialog.dismiss();
+
                 Log.i("Error: ",t.toString());
                 Toast.makeText(MainActivity.this, "Tente novamente...", Toast.LENGTH_SHORT).show();
             }

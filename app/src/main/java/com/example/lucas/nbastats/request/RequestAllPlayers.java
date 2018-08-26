@@ -19,7 +19,7 @@ public class RequestAllPlayers{
     public Call<List<Player>> getAllPlayers(){
         String endpoint = "/nba/v0/players";
 
-        return  service.getAllPlayers(endpoint);
+        return service.getAllPlayers(endpoint);
     }
 
     private interface Service {

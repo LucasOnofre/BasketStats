@@ -35,7 +35,7 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.CustomVi
         TextView  teams;
         TextView  status;
         TextView  rookieYear;
-        ImageView playerHeadshot;
+        ImageView playerHeadShot;
 
 
         CustomViewHolder(View itemView) {
@@ -47,7 +47,7 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.CustomVi
             teams           = view.findViewById(R.id.team);
             status          = view.findViewById(R.id.status);
             rookieYear      = view.findViewById(R.id.rookieYear);
-            playerHeadshot  = view.findViewById(R.id.player_headAhot);
+            playerHeadShot  = view.findViewById(R.id.player_headAhot);
         }
     }
 
@@ -66,18 +66,20 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.CustomVi
         String firstName    = dataList.get(position).getFirstName();
         String lastName     = dataList.get(position).getLastName();
 
-        Picasso.get().load("https://nba-players.herokuapp.com/players/" + lastName+ "/" + firstName).into(holder.playerHeadshot, new Callback() {
+
+        Picasso.get().load("https://nba-players.herokuapp.com/players/" + lastName+ "/" + firstName).fit().into(holder.playerHeadShot, new Callback() {
             @Override
             public void onSuccess() {
-                holder.playerHeadshot.setBackgroundColor(Color.WHITE);
+                holder.playerHeadShot.setBackgroundColor(Color.WHITE);
 
             }
 
             @Override
             public void onError(Exception e) {
 
+                holder.playerHeadShot.setBackgroundColor(Color.WHITE);
+                holder.playerHeadShot.setImageResource(R.drawable.nba_logo);
 
-                holder.playerHeadshot.setBackgroundColor(Color.GRAY);
             }
         });
 

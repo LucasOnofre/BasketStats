@@ -1,5 +1,6 @@
 package com.example.lucas.nbastats.activity;
 
+import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
@@ -9,7 +10,9 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.AdapterView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,14 +33,14 @@ public class ChooseTeamActivity extends BaseActivity {
     private CardPagerAdapter  cardAdapter;
     private ShadowTransformer cardShadowTransformer;
 
-    private String[]          seasons = new String[]{"2015","2016","2017","2018"};
-
+    private String[]          seasons = new String[]{"2015","2016","2017"};
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_team);
+
 
 
         teams = getTeamInfo();
@@ -59,8 +62,6 @@ public class ChooseTeamActivity extends BaseActivity {
         viewPager.setPageTransformer(false, cardShadowTransformer);
 
         ((TextView)findViewById(R.id.team_name)).setText(teams[0].getFullName());
-
-
 
     }
 
@@ -99,17 +100,20 @@ public class ChooseTeamActivity extends BaseActivity {
 
             generateAlertDialog();
 
+
         }
     };
 
+    //Intent que abre a activity TeamInfo
     private void openTeamInfo() {
 
-            Intent intent = new Intent(ChooseTeamActivity.this,TeamInfo.class);
+            Intent intent = new Intent(ChooseTeamActivity.this,TeamInfoActivity.class);
             startActivity(intent);
             overridePendingTransition(R.anim.transition_from_activity, 0);
     }
 
 
+    //Salva no device o nome e inicial do time selecionado
     private void  saveInDeviceValues(String initial,String nameTeam){
 
         SharedPreferences pref          = getApplicationContext().getSharedPreferences("MyPref", 0);
@@ -119,11 +123,10 @@ public class ChooseTeamActivity extends BaseActivity {
         editor.putString("teamName",nameTeam);
         editor.commit();
 
-
     }
 
+    //Gera o alertDialog com as temporadas para a chamada
     private void generateAlertDialog(){
-
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Choose the season");
@@ -132,22 +135,24 @@ public class ChooseTeamActivity extends BaseActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int position) {
 
-
                 String yearSelected = seasons[position].toString();
 
-                SharedPreferences pref          = getApplicationContext().getSharedPreferences("MyPref", 0);
-                SharedPreferences.Editor editor = pref.edit();
+                saveSeasonChoosed(yearSelected);
 
-                editor.putString("yearSelected", yearSelected);
-                editor.commit();
-
+                openTeamInfo();
             }
-
         });
-
         builder.show();
+    }
 
-        openTeamInfo();
+    // Salva a temporada selecionada no alertDialog
+    private void saveSeasonChoosed(String yearSelected) {
+
+        SharedPreferences pref          = getApplicationContext().getSharedPreferences("MyPref", 0);
+        SharedPreferences.Editor editor = pref.edit();
+
+        editor.putString("seasonSelected",yearSelected);
+        editor.commit();
     }
 
 

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.DatePicker;
+import android.widget.ProgressBar;
 
 import com.example.lucas.nbastats.R;
 import com.example.lucas.nbastats.model.Team;
@@ -16,9 +17,6 @@ import java.util.Calendar;
 public class BaseActivity extends AppCompatActivity {
 
     protected Toolbar toolbar;
-    private ProgressDialog progressDialog;
-    Calendar calendar;
-    DatePickerDialog datePickerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,13 +73,6 @@ public class BaseActivity extends AppCompatActivity {
         };
 
         return teams;
-    }
-
-    protected ProgressDialog generateProgressBar(Context context) {
-        progressDialog = new ProgressDialog(context);
-        progressDialog.show();
-
-        return progressDialog;
     }
 }
 

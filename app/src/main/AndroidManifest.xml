@@ -4,6 +4,7 @@
 
     <!-- Permissão de Internet -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -22,7 +23,7 @@
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.TeamPlayersActivity" />
         <activity android:name=".activity.BaseActivity" />
-        <activity android:name=".activity.TeamInfo"></activity>
+        <activity android:name=".activity.TeamInfoActivity"></activity>
     </application>
 
 </manifest>

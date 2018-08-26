@@ -18,7 +18,7 @@ import com.example.lucas.nbastats.fragment.PlayersFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeamInfo extends BaseActivity {
+public class TeamInfoActivity extends BaseActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -88,7 +88,7 @@ public class TeamInfo extends BaseActivity {
     }
 
     private String getSavedData(){
-        //Retorna os dados salvos dos times ao serem escolhidos
+        //Retorna o nome do time escolhido, para a toolbar
         SharedPreferences pref  = this.getSharedPreferences("MyPref", 0);
         String teamName     = pref.getString("teamName", null);
 

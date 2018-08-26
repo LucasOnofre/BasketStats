@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.lucas.nbastats.R;
@@ -52,10 +53,6 @@ public class PlayersFragment extends BaseFragment {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        //Progress dialog que aparece antes da chamada e some após a mesma ser realizada
-        final ProgressDialog progressDialog = generateProgressDialog(getContext());
-
-
 
         //Retorna os dados salvos dos times ao serem escolhidos
         SharedPreferences pref  = getContext().getSharedPreferences("MyPref", 0);
@@ -67,14 +64,13 @@ public class PlayersFragment extends BaseFragment {
         new RequestPlayer().getPlayersFrom(teamInitials).enqueue(new Callback<List<Player>>() {
             @Override
             public void onResponse(Call<List<Player>> call, Response<List<Player>> response) {
-                progressDialog.dismiss();
+
                 GenerateDataList(response.body());
             }
 
             @Override
             public void onFailure(Call<List<Player>> call, Throwable t) {
 
-                progressDialog.dismiss();
                 Log.i("Error: ",t.toString());
                 Toast.makeText(getContext(), "Error, please try again!", Toast.LENGTH_SHORT).show();
             }

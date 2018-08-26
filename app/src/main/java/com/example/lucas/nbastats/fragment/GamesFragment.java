@@ -1,24 +1,21 @@
 package com.example.lucas.nbastats.fragment;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.lucas.nbastats.R;
 import com.example.lucas.nbastats.adapter.GamesAdapter;
 import com.example.lucas.nbastats.model.Game;
-import com.example.lucas.nbastats.model.Player;
 import com.example.lucas.nbastats.request.RequestGamesFromTeam;
-import com.example.lucas.nbastats.request.RequestPlayer;
 
 import java.util.List;
 
@@ -51,29 +48,28 @@ public class GamesFragment extends BaseFragment {
         layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        //Progress dialog que aparece antes da chamada e some após a mesma ser realizada
-        final ProgressDialog progressDialog = generateProgressDialog(getContext());
+
+
 
         //Retorna os dados salvos dos times ao serem escolhidos
         SharedPreferences pref = getContext().getSharedPreferences("MyPref", 0);
         String teamInitials = pref.getString("teamInitials", null);
 
         //Retorna os dados salvos dos times ao serem escolhidos
-        String yearSelected = pref.getString("yearSelected",null);
+        String yearSelected = pref.getString("seasonSelected",null);
 
 
         //Faz o request passando como parametro a sigla do time e o ano , que vem da ChooseTeamActivity
         new RequestGamesFromTeam().getGamesFrom(teamInitials,yearSelected).enqueue(new Callback<List<Game>>() {
             @Override
             public void onResponse(Call<List<Game>> call, Response<List<Game>> response) {
-                progressDialog.dismiss();
+
                 GenerateDataList(response.body());
             }
 
             @Override
             public void onFailure(Call<List<Game>> call, Throwable t) {
 
-                progressDialog.dismiss();
                 Log.i("Error: ", t.toString());
                 Toast.makeText(getContext(), "Error, please try again!", Toast.LENGTH_SHORT).show();
             }
