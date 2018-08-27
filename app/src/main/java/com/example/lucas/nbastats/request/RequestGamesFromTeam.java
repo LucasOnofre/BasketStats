@@ -1,7 +1,6 @@
 package com.example.lucas.nbastats.request;
 
 import com.example.lucas.nbastats.model.Game;
-import com.example.lucas.nbastats.model.Player;
 
 import java.util.List;
 

@@ -1,6 +1,5 @@
 package com.example.lucas.nbastats.fragment;
 
-import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,11 +26,12 @@ public class GamesFragment extends BaseFragment {
     private RecyclerView recyclerView;
     private GamesAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+    private ProgressBar progressBar;
 
 
     public GamesFragment() {
-        // Required empty public constructor
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,26 +49,37 @@ public class GamesFragment extends BaseFragment {
         recyclerView.setLayoutManager(layoutManager);
 
 
+        progressBar = container.findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.VISIBLE);
 
 
-        //Retorna os dados salvos dos times ao serem escolhidos
+        /**
+         * Retorna os dados salvos dos times ao serem escolhidos
+         */
         SharedPreferences pref = getContext().getSharedPreferences("MyPref", 0);
         String teamInitials = pref.getString("teamInitials", null);
 
-        //Retorna os dados salvos dos times ao serem escolhidos
+
+        /**
+         * Retorna os dados salvos dos times ao serem escolhidos
+         */
         String yearSelected = pref.getString("seasonSelected",null);
 
 
-        //Faz o request passando como parametro a sigla do time e o ano , que vem da ChooseTeamActivity
+        /**
+         * Faz o request passando como parametro a sigla do time e o ano , que vem da ChooseTeamActivity
+         */
         new RequestGamesFromTeam().getGamesFrom(teamInitials,yearSelected).enqueue(new Callback<List<Game>>() {
             @Override
             public void onResponse(Call<List<Game>> call, Response<List<Game>> response) {
 
+                progressBar.setVisibility(View.GONE);
                 GenerateDataList(response.body());
             }
 
             @Override
             public void onFailure(Call<List<Game>> call, Throwable t) {
+                progressBar.setVisibility(View.GONE);
 
                 Log.i("Error: ", t.toString());
                 Toast.makeText(getContext(), "Error, please try again!", Toast.LENGTH_SHORT).show();
@@ -77,7 +88,10 @@ public class GamesFragment extends BaseFragment {
         return container;
     }
 
-    // Pega a resposta do request e manda para o adapter
+    /**
+     * Pega a resposta do request e manda para o adapter
+     */
+
     private void GenerateDataList(List<Game> gameList) {
         adapter = new GamesAdapter(getContext(), gameList);
         recyclerView.setAdapter(adapter);

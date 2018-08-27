@@ -14,7 +14,6 @@ import com.example.lucas.nbastats.R;
 import com.example.lucas.nbastats.model.Player;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.RequestCreator;
 
 import java.util.List;
 
@@ -51,6 +50,10 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.CustomVi
         }
     }
 
+    /**
+     * Cria o viewholder do RecyclerView
+     */
+
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -60,16 +63,21 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.CustomVi
         return new CustomViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(final CustomViewHolder holder, int position) {
 
         String firstName    = dataList.get(position).getFirstName();
         String lastName     = dataList.get(position).getLastName();
 
+        /**
+         * Carrega a imagem da chamada usando Picasso
+         */
 
         Picasso.get().load("https://nba-players.herokuapp.com/players/" + lastName+ "/" + firstName).fit().into(holder.playerHeadShot, new Callback() {
             @Override
             public void onSuccess() {
+
                 holder.playerHeadShot.setBackgroundColor(Color.WHITE);
 
             }

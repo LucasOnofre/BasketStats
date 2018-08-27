@@ -1,14 +1,12 @@
 package com.example.lucas.nbastats.activity;
 
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.lucas.nbastats.R;
@@ -25,6 +23,8 @@ public class TeamInfoActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teaminfo);
         setupToolbar(getSavedData());
@@ -36,7 +36,11 @@ public class TeamInfoActivity extends BaseActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    //Método que cuida dos itens selecionados no menu/toolbar
+
+    /**
+     * Método que cuida dos itens selecionados no menu/toolbar
+     */
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -50,7 +54,10 @@ public class TeamInfoActivity extends BaseActivity {
     }
 
 
-    //Cria os fragmentos passando os títulos
+    /**
+     * Cria os fragmentos passando os títulos
+     */
+
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new GamesFragment(),  "GAMES");
@@ -87,10 +94,14 @@ public class TeamInfoActivity extends BaseActivity {
         }
     }
 
+
+    /**
+     * Retorna o nome do time escolhido, para a toolbar
+     */
+
     private String getSavedData(){
-        //Retorna o nome do time escolhido, para a toolbar
         SharedPreferences pref  = this.getSharedPreferences("MyPref", 0);
-        String teamName     = pref.getString("teamName", null);
+        String teamName         = pref.getString("teamName", null);
 
         return teamName;
     }

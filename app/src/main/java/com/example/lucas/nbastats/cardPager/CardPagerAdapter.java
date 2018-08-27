@@ -85,6 +85,10 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
 
     private void bind(CardItem item, View view) {
 
+        /**
+         * Carrega a imagem da chamada usando Picasso
+         */
+
         ImageView logo = view.findViewById(R.id.logos);
         logo.setImageResource(item.getTeam().getLogo());
     }
