@@ -55,6 +55,7 @@ public class Game {
         this.awayTeam = awayTeam;
     }
 
+
     public class HomeTeam {
         @SerializedName("teamID")
         private String teamId;

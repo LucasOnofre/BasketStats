@@ -21,7 +21,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PlayersFragment extends BaseFragment {
+public class PlayersFragment extends android.support.v4.app.Fragment {
 
     private RecyclerView recyclerView;
     private PlayersAdapter adapter;
@@ -37,13 +37,14 @@ public class PlayersFragment extends BaseFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         container = (ViewGroup) inflater.inflate(R.layout.players_fragment, container, false);
 
-        recyclerView = container.findViewById(R.id.recycle_players_fragment);
-
-        layoutManager = new LinearLayoutManager(getContext());
+        /**
+         * Inicializa e configura o layout do RecycleView
+         */
+        recyclerView    = container.findViewById(R.id.recycle_players_fragment);
+        layoutManager   = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
         /**
