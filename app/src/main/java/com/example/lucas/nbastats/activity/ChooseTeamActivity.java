@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.example.lucas.nbastats.R;
@@ -43,13 +44,15 @@ public class ChooseTeamActivity extends BaseActivity {
             }
 
         cardShadowTransformer = new ShadowTransformer(viewPager, cardAdapter);
-
         viewPager.setAdapter(cardAdapter);
         viewPager.setOffscreenPageLimit(4);
         viewPager.addOnPageChangeListener(pageListener);
         viewPager.setPageTransformer(false, cardShadowTransformer);
 
-        ((TextView)findViewById(R.id.team_name)).setText(teams[0].getFullName());
+      //iewPager.setCurrentItem(9);
+
+
+        changeTitle(teams[0]);
 
     }
 
@@ -65,7 +68,10 @@ public class ChooseTeamActivity extends BaseActivity {
         @Override
         public void onPageSelected(int position) {
             Team team = teams[position];
-            ((TextView)findViewById(R.id.team_name)).setText(team.getFullName());
+            changeTitle(team);
+
+            //FAZER O INDEX SIDE, USANDO A POSITION Q PEGA DO BANG, É SÓ BATER COM A DO ALFABETO
+
         }
 
         @Override
@@ -73,6 +79,10 @@ public class ChooseTeamActivity extends BaseActivity {
 
         }
     };
+
+    private void changeTitle(Team teamName) {
+        ((TextView)findViewById(R.id.team_name)).setText(teamName.getFullName());
+    }
 
     /**
      * Recebe os cliques dado nos items da lista
@@ -138,7 +148,9 @@ public class ChooseTeamActivity extends BaseActivity {
                 openTeamInfo();
             }
         });
-        builder.show();
+       AlertDialog dialog =  builder.create();
+       dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+       dialog.show();
     }
 
     /**
