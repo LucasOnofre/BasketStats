@@ -7,4 +7,23 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="fruits_array">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>G</item>
+        <item>H</item>
+        <item>I</item>
+        <item>L</item>
+        <item>M</item>
+        <item>N</item>
+        <item>O</item>
+        <item>P</item>
+        <item>S</item>
+        <item>T</item>
+        <item>U</item>
+        <item>W</item>
+    </string-array>
 </resources>

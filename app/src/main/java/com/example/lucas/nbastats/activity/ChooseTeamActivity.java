@@ -6,14 +6,26 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.example.lucas.nbastats.R;
+import com.example.lucas.nbastats.adapter.FilterAdapter;
 import com.example.lucas.nbastats.cardPager.CardItem;
 import com.example.lucas.nbastats.cardPager.CardPagerAdapter;
 import com.example.lucas.nbastats.cardPager.ShadowTransformer;
 import com.example.lucas.nbastats.model.Team;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ChooseTeamActivity extends BaseActivity {
 
@@ -25,6 +37,8 @@ public class ChooseTeamActivity extends BaseActivity {
     private ShadowTransformer cardShadowTransformer;
 
     private String[]          seasons = new String[]{"2015","2016","2017"};
+
+   private RecyclerView filterList;
 
 
     @Override
@@ -49,10 +63,22 @@ public class ChooseTeamActivity extends BaseActivity {
         viewPager.addOnPageChangeListener(pageListener);
         viewPager.setPageTransformer(false, cardShadowTransformer);
 
-      //iewPager.setCurrentItem(9);
-
-
+        //iewPager.setCurrentItem(9);
         changeTitle(teams[0]);
+
+
+        String[] fruits = getResources().getStringArray(R.array.fruits_array);
+        Arrays.asList(fruits);
+        filterList =  findViewById(R.id.list_index);
+
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,LinearLayout.HORIZONTAL,false);
+        filterList.setLayoutManager(layoutManager);
+
+        filterList.setHasFixedSize(true);
+
+        FilterAdapter mAdapter = new FilterAdapter(fruits, onFilterSelected);
+        filterList.setAdapter(mAdapter);
 
     }
 
@@ -70,8 +96,6 @@ public class ChooseTeamActivity extends BaseActivity {
             Team team = teams[position];
             changeTitle(team);
 
-            //FAZER O INDEX SIDE, USANDO A POSITION Q PEGA DO BANG, É SÓ BATER COM A DO ALFABETO
-
         }
 
         @Override
@@ -83,6 +107,19 @@ public class ChooseTeamActivity extends BaseActivity {
     private void changeTitle(Team teamName) {
         ((TextView)findViewById(R.id.team_name)).setText(teamName.getFullName());
     }
+
+    private FilterAdapter.OnFilterSelected onFilterSelected = new FilterAdapter.OnFilterSelected() {
+        @Override
+        public void onSelected(String letter) {
+            for(int i = 0; i < teams.length; i++){
+                Team team = teams[i];
+                if(team.getFullName().startsWith(letter)){
+                    viewPager.setCurrentItem(i);
+                    return;
+                }
+            }
+        }
+    };
 
     /**
      * Recebe os cliques dado nos items da lista
@@ -97,7 +134,6 @@ public class ChooseTeamActivity extends BaseActivity {
             saveInDeviceValues(initial,nameTeam);
 
             generateAlertDialog();
-
 
         }
     };
@@ -165,6 +201,5 @@ public class ChooseTeamActivity extends BaseActivity {
         editor.putString("seasonSelected",yearSelected);
         editor.commit();
     }
-
 
 }
