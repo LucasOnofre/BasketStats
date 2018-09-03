@@ -38,7 +38,7 @@ public class TeamInfoActivity extends BaseActivity {
 
 
     /**
-     * Método que cuida dos itens selecionados no menu/toolbar
+     * Manage the selected itens in the toolbar
      */
 
     @Override
@@ -55,7 +55,7 @@ public class TeamInfoActivity extends BaseActivity {
 
 
     /**
-     * Cria os fragmentos passando os títulos
+     * Creates the fragments passing the Tittle
      */
 
     private void setupViewPager(ViewPager viewPager) {
@@ -96,7 +96,7 @@ public class TeamInfoActivity extends BaseActivity {
 
 
     /**
-     * Retorna o nome do time escolhido, para a toolbar
+     * Returns the choosed team name
      */
 
     private String getSavedData(){

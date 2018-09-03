@@ -18,7 +18,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     /**
-     * Configura a toolbar, se existir no layout
+     * Set the toolbar, if exists
      */
     protected void setupToolbar(String title) {
         toolbar = findViewById(R.id.toolbar);
@@ -30,7 +30,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
         /**
-         * Array com todos os times, contendo nome,sigla e logo
+         * Array with every team in NBA, as their initials and logo
          */
     protected Team[] getTeamInfo() {
 

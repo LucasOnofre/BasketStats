@@ -27,6 +27,10 @@ public class PlayersFragment extends android.support.v4.app.Fragment {
     private PlayersAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    /**
+     * Empty constructor
+     */
+
     public PlayersFragment() {
     }
 
@@ -41,14 +45,15 @@ public class PlayersFragment extends android.support.v4.app.Fragment {
         container = (ViewGroup) inflater.inflate(R.layout.players_fragment, container, false);
 
         /**
-         * Inicializa e configura o layout do RecycleView
+         * Initialize and set's the recycler view and his layout type
          */
+
         recyclerView    = container.findViewById(R.id.recycle_players_fragment);
         layoutManager   = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
         /**
-         * Retorna os dados salvos dos times ao serem escolhidos
+         * Get's the team initials saved in the device
          */
 
         SharedPreferences pref  = getContext().getSharedPreferences("MyPref", 0);
@@ -56,7 +61,7 @@ public class PlayersFragment extends android.support.v4.app.Fragment {
 
 
         /**
-         * Faz o request passando como parametro a sigla do time, que vem da ChooseTeamActivity
+         * Make's the request with the team initials as params
          */
 
         new RequestPlayer().getPlayersFrom(teamInitials).enqueue(new Callback<List<Player>>() {
@@ -76,7 +81,7 @@ public class PlayersFragment extends android.support.v4.app.Fragment {
         return container;
     }
     /**
-     * Pega a resposta do request e manda para o adapter
+     * Get's the response and send to the adapter
      */
 
     private void GenerateDataList(List<Player> playersList){

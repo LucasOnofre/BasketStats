@@ -29,26 +29,24 @@ public class TeamPlayersActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_players);
 
-        recyclerView = findViewById(R.id.recycle_list_team_players);
-
 
         /**
-         * Configura o recycleView
+         * Set's the recyclerView
          */
-
+        recyclerView  = findViewById(R.id.recycle_list_team_players);
         layoutManager = new LinearLayoutManager(TeamPlayersActivity.this);
         recyclerView.setLayoutManager(layoutManager);
 
 
         /**
-         * Recebe as informações vindas da ChooseTeamActivity
+         * Receives the information saved in ChooseTeamActivity
          */
 
         String teamName     = getIntent().getStringExtra("teamName");
         String teamInitial  = getIntent().getStringExtra("teamInitials");
 
         /**
-         * Configura a toolbar vinda da Base
+         * Set's the toolbar that comes from BaseActivity
          */
 
         setupToolbar(teamName);
@@ -58,7 +56,7 @@ public class TeamPlayersActivity extends BaseActivity {
 
 
         /**
-         * Faz o request passando como parametro a sigla do time, que vem da ChooseTeamActivity
+         * Make's the request passing the chooses team initials as params
          */
 
         new RequestPlayer().getPlayersFrom(teamInitial).enqueue(new Callback<List<Player>>() {
@@ -79,7 +77,7 @@ public class TeamPlayersActivity extends BaseActivity {
 
 
     /**
-     * Pega a resposta do request e manda para o adapter
+     * Get's the response and send's to the adapter
      */
 
     private void GenerateDataList(List<Player> playersList){
@@ -90,7 +88,7 @@ public class TeamPlayersActivity extends BaseActivity {
 
 
     /**
-     * Método que cuida dos itens selecionados no menu/toolbar
+     * Manage the selected itens in the toolbar
      */
 
     @Override

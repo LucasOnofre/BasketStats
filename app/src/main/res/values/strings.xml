@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">NbaStats</string>
     <string name="base_url">http://api.suredbits.com</string>
@@ -5,7 +6,6 @@
     <string name="players">Players</string>
     <string name="home">Home</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string-array name="fruits_array">

@@ -28,10 +28,12 @@ public class GamesFragment extends android.support.v4.app.Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private ProgressBar progressBar;
 
+    /**
+     * Empty constructor
+     */
 
     public GamesFragment() {
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +45,7 @@ public class GamesFragment extends android.support.v4.app.Fragment {
         container = (ViewGroup) inflater.inflate(R.layout.games_fragment, container, false);
 
         /**
-         * Inicializa e configura o layout do RecycleView
+         * Initialize and set's the recycler view and his layout type
          */
         recyclerView  = container.findViewById(R.id.recycle_games_fragment);
         layoutManager = new LinearLayoutManager(getContext());
@@ -51,28 +53,27 @@ public class GamesFragment extends android.support.v4.app.Fragment {
 
 
         /**
-         * Inicializa a Progresbar
+         * Set's the progress bar
          */
-
         progressBar = container.findViewById(R.id.progressBar);
         progressBar.setVisibility(View.VISIBLE);
 
 
         /**
-         * Retorna os dados salvos dos times ao serem escolhidos
+         * Get's the team Initial saved in devide
          */
         SharedPreferences pref  = getContext().getSharedPreferences("MyPref", 0);
         String teamInitials     = pref.getString("teamInitials", null);
 
 
         /**
-         * Retorna os dados salvos dos times ao serem escolhidos
+         * Get's the season selected saved in the device
          */
         String yearSelected = pref.getString("seasonSelected",null);
 
 
         /**
-         * Faz o request passando como parametro a sigla do time e o ano , que vem da ChooseTeamActivity
+         * Make's the request passing as params the team initial and the season selected
          */
         new RequestGamesFromTeam().getGamesFrom(teamInitials,yearSelected).enqueue(new Callback<List<Game>>() {
             @Override
@@ -92,7 +93,7 @@ public class GamesFragment extends android.support.v4.app.Fragment {
     }
 
     /**
-     * Pega a resposta do request e manda para o adapter
+     * Get's the response from the request and send to the adapter
      */
 
     private void GenerateDataList(List<Game> gameList) {

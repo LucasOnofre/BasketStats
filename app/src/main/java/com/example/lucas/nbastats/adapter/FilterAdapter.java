@@ -9,7 +9,8 @@ import android.widget.TextView;
 
 import com.example.lucas.nbastats.R;
 
-public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.MyViewHolder> {
+public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.MyViewHolder>{
+
 
     public interface OnFilterSelected{
          void onSelected(String letter);
@@ -18,7 +19,8 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.MyViewHold
     private String[] list;
     private OnFilterSelected onFilterSelected;
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder  {
 
         public TextView letter;
         public MyViewHolder(TextView v) {
@@ -27,7 +29,9 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.MyViewHold
         }
     }
 
-
+    /**
+     * Constructor
+      **/
     public FilterAdapter(String[] myDataset, OnFilterSelected onFilterSelected) {
         list = myDataset;
         this.onFilterSelected = onFilterSelected;
@@ -41,6 +45,10 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.MyViewHold
         return vh;
     }
 
+
+    /**
+     * Make's the onBind of the recyclerview and get's the team position for the scroll index
+     **/
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
 

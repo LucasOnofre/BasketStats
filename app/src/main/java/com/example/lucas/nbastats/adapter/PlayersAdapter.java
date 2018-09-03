@@ -50,10 +50,6 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.CustomVi
         }
     }
 
-    /**
-     * Cria o viewholder do RecyclerView
-     */
-
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -71,7 +67,7 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.CustomVi
         String lastName     = dataList.get(position).getLastName();
 
         /**
-         * Carrega a imagem da chamada usando Picasso
+         * Load the image of the call using Picasso
          */
 
         Picasso.get().load("https://nba-players.herokuapp.com/players/" + lastName+ "/" + firstName).fit().into(holder.playerHeadShot, new Callback() {
@@ -82,6 +78,9 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.CustomVi
 
             }
 
+            /**
+             * In case of error from loading the player photo, a default is shown
+             */
             @Override
             public void onError(Exception e) {
 
@@ -99,7 +98,6 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.CustomVi
             holder.status.setTextColor(ContextCompat.getColor(context,R.color.green));
 
         holder.status    .setText(status);
-
         holder.rookieYear.setText(dataList.get(position).getRookieYear().toString());
 
     }

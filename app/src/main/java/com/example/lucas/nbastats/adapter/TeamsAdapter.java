@@ -30,8 +30,8 @@ public class TeamsAdapter extends RecyclerView.Adapter<TeamsAdapter.CustomViewHo
 
             super(itemView);
 
-            view       = itemView;
-            teams      = view.findViewById(R.id.team);
+            view   = itemView;
+            teams  = view.findViewById(R.id.team);
         }
     }
 

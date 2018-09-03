@@ -8,37 +8,31 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.ArrayAdapter;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.SectionIndexer;
 import android.widget.TextView;
-
 import com.example.lucas.nbastats.R;
 import com.example.lucas.nbastats.adapter.FilterAdapter;
 import com.example.lucas.nbastats.cardPager.CardItem;
 import com.example.lucas.nbastats.cardPager.CardPagerAdapter;
 import com.example.lucas.nbastats.cardPager.ShadowTransformer;
 import com.example.lucas.nbastats.model.Team;
-
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
 
 public class ChooseTeamActivity extends BaseActivity {
 
 
     private Team []           teams;
-
     private ViewPager         viewPager;
     private CardPagerAdapter  cardAdapter;
     private ShadowTransformer cardShadowTransformer;
 
+    private RecyclerView      filterList;
+
     private String[]          seasons = new String[]{"2015","2016","2017"};
 
-   private RecyclerView filterList;
+    private TextView          index;
 
 
     @Override
@@ -46,44 +40,57 @@ public class ChooseTeamActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_team);
 
-        teams = getTeamInfo();
-
+        teams       = getTeamInfo();
         viewPager   = findViewById(R.id.viewPager);
-
         cardAdapter = new CardPagerAdapter(onTeamClickListener);
 
-
+    /**
+     *  Create the CardView and sets the team name
+     */
             for (Team team:teams){
                 cardAdapter.addCardItem(new CardItem(team));
             }
+        changeTitle(teams[0]);
 
+        /**
+         *  Create and modify the viewPager
+         */
+
+        setViewPager();
+
+
+        /**
+         *  Set's the Array for the index Scroll
+         */
+
+        filterList =  findViewById(R.id.list_index);
+        final String[] index = getResources().getStringArray(R.array.fruits_array);
+        Arrays.asList(index);
+
+
+        /**
+         * Set's the Recycler view and his layout type
+         */
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,LinearLayout.HORIZONTAL,false);
+        filterList.setLayoutManager(layoutManager);
+        filterList.setHasFixedSize(true);
+
+        FilterAdapter mAdapter = new FilterAdapter(index, onFilterSelected);
+        filterList.setAdapter(mAdapter);
+
+    }
+
+    private void setViewPager() {
         cardShadowTransformer = new ShadowTransformer(viewPager, cardAdapter);
         viewPager.setAdapter(cardAdapter);
         viewPager.setOffscreenPageLimit(4);
         viewPager.addOnPageChangeListener(pageListener);
         viewPager.setPageTransformer(false, cardShadowTransformer);
-
-        //iewPager.setCurrentItem(9);
-        changeTitle(teams[0]);
-
-
-        String[] fruits = getResources().getStringArray(R.array.fruits_array);
-        Arrays.asList(fruits);
-        filterList =  findViewById(R.id.list_index);
-
-
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this,LinearLayout.HORIZONTAL,false);
-        filterList.setLayoutManager(layoutManager);
-
-        filterList.setHasFixedSize(true);
-
-        FilterAdapter mAdapter = new FilterAdapter(fruits, onFilterSelected);
-        filterList.setAdapter(mAdapter);
-
     }
 
     /**
-     * Notifca quando o carrossel muda de pagina
+     * Notify when the Carrousel change's pages.
      */
     private ViewPager.OnPageChangeListener pageListener = new ViewPager.OnPageChangeListener() {
         @Override
@@ -104,25 +111,36 @@ public class ChooseTeamActivity extends BaseActivity {
         }
     };
 
+    /**
+     * Change's the Team name
+     */
+
     private void changeTitle(Team teamName) {
         ((TextView)findViewById(R.id.team_name)).setText(teamName.getFullName());
     }
 
+    /**
+     * Create's an interface to get the position for the index scroll
+     */
     private FilterAdapter.OnFilterSelected onFilterSelected = new FilterAdapter.OnFilterSelected() {
         @Override
         public void onSelected(String letter) {
-            for(int i = 0; i < teams.length; i++){
-                Team team = teams[i];
-                if(team.getFullName().startsWith(letter)){
-                    viewPager.setCurrentItem(i);
-                    return;
-                }
-            }
+            itStartsWithLetter(letter);
         }
     };
 
+    private void itStartsWithLetter(String letter) {
+        for(int i = 0; i < teams.length; i++){
+            Team team = teams[i];
+            if(team.getFullName().startsWith(letter)){
+                viewPager.setCurrentItem(i);
+                return;
+            }
+        }
+    }
+
     /**
-     * Recebe os cliques dado nos items da lista
+     * Receives the click from the CardView
      */
     private CardPagerAdapter.OnTeamClickListener onTeamClickListener = new CardPagerAdapter.OnTeamClickListener() {
         @Override
@@ -139,7 +157,7 @@ public class ChooseTeamActivity extends BaseActivity {
     };
 
     /**
-     * Intent que abre a activity TeamInfo
+     * Intent that sends to the TeaminfoAcitivity
      */
 
     private void openTeamInfo() {
@@ -150,7 +168,7 @@ public class ChooseTeamActivity extends BaseActivity {
     }
 
     /**
-     * Salva no device o nome e inicial do time selecionado
+     * Save in the device the name and initial of the selected team
      */
 
     private void  saveInDeviceValues(String initial,String nameTeam){
@@ -165,7 +183,7 @@ public class ChooseTeamActivity extends BaseActivity {
     }
 
     /**
-     * Gera o alertDialog com as temporadas para a chamada
+     * Generates the alertDialog with the seasons for the call
      */
 
     private void generateAlertDialog(){
@@ -190,7 +208,7 @@ public class ChooseTeamActivity extends BaseActivity {
     }
 
     /**
-     * Salva a temporada selecionada no alertDialog
+     * Save the selected season on alertDialog
      */
 
     private void saveSeasonChoosed(String yearSelected) {

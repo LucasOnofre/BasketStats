@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.example.lucas.nbastats"
+        applicationId "com.onoffice.lucas.nbastats"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
@@ -41,5 +41,6 @@ dependencies {
 
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+
 
 }

@@ -28,7 +28,7 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHo
     class CustomViewHolder extends RecyclerView.ViewHolder {
 
         /**
-         * Cria as instâncias das views
+         * instance of the views
          */
 
         View view;
@@ -68,7 +68,7 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHo
     public void onBindViewHolder(CustomViewHolder holder, int position) {
 
         /**
-         * Faz o bind das views, tratando cada uma
+         * Binds views, treating each one
          */
 
         holder.choosenTeamInitial.setText(dataList.get(position).getHomeTeam().getTeamId());
@@ -105,10 +105,6 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHo
     }
 
 
-    /**
-     *
-     */
-
     @Override
     public int getItemCount() {
         return dataList.size();
@@ -116,7 +112,7 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHo
 
 
     /**
-     * Array com todos os times, contendo nome,sigla e logo
+     * Array with all teams, containing name, initial and logo
      */
 
     protected int getTeamLogo(String initial) {
@@ -156,7 +152,7 @@ public class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.CustomViewHo
         };
 
         for (Team team: teams){
-            if (initial.equals( team.getInitials())){
+            if (initial.equals(team.getInitials())){
                 return team.getLogo();
             }
 
