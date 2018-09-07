@@ -3,6 +3,8 @@
 O NbaStats é um aplicativo voltado ao Basquete, onde o mesmo apresenta todos os times da NBA, assim como os jogos da temporada regular e
 os jogadores de cada time.
 
+Disponível também na Play Store: https://play.google.com/store/apps/details?id=com.onoffice.lucas.nbastats
+
 ---
  ### APP NbaStats:
  
