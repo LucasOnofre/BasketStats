@@ -8,4 +8,4 @@ Also available on Play Store: https://play.google.com/store/apps/details?id=com.
  ### APP NbaStats:
  
  
- ![](https://github.com/LucasOnofre/NbaStats/blob/master/print1.png)
+ ![](https://github.com/LucasOnofre/NbaStats/blob/master/print.png)
