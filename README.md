@@ -9,3 +9,5 @@ Also available on Play Store: https://play.google.com/store/apps/details?id=com.
  
  
  ![](https://github.com/LucasOnofre/NbaStats/blob/master/print.png)
+ ![](https://github.com/LucasOnofre/NbaStats/blob/master/print2.png)
+ ![](https://github.com/LucasOnofre/NbaStats/blob/master/print3.png)
