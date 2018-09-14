@@ -6,8 +6,5 @@ the players of each team. The data came from the api of Suredbits.
 Also available on Play Store: https://play.google.com/store/apps/details?id=com.onoffice.lucas.nbastats
 
  ### APP NbaStats:
- 
- 
-![](https://github.com/LucasOnofre/NbaStats/blob/master/print.png)
-![](https://github.com/LucasOnofre/NbaStats/blob/master/print2.png)
-![](https://github.com/LucasOnofre/NbaStats/blob/master/print3.png)
+  
+![](https://media.giphy.com/media/8JTDhb8CMWXClzWGpL/giphy.gif)
