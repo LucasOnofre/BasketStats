@@ -8,9 +8,8 @@ Also available on Play Store: https://play.google.com/store/apps/details?id=com.
  
 ![](https://media.giphy.com/media/8JTDhb8CMWXClzWGpL/giphy.gif)
 
-App Propose
-===========
-
+## App Propose
+-
 
 ## Author
 
