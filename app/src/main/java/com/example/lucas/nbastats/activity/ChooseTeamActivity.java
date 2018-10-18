@@ -55,10 +55,8 @@ public class ChooseTeamActivity extends BaseActivity {
         /**
          *  Create and modify the viewPager
          */
-
         setViewPager();
-
-
+        
         /**
          *  Set's the Array for the index Scroll
          */
