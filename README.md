@@ -2,6 +2,7 @@ NBA Stats
 ===========
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/LucasOnofre/NbaStats/blob/master/LICENSE)
+[![PLayStore](https://img.shields.io/badge/PlayStore-1.1-blue.svg)](https://play.google.com/store/apps/details?id=com.onoffice.lucas.nbastats)
 
 NbaStats is a basketball-focused application, where it features all NBA teams, as well as regular season games and
 the players of each team. The data came from the apis of Suredbist and Nba-players.herokuapp.
