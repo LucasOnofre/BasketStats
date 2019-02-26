@@ -11,7 +11,7 @@ the players of each team. The data came from the apis of Suredbist and Nba-playe
 
 ## App Propose
 
-Informations about what is used in NBA Stats: 
+What is used in this app: 
 
 - CardView: To display the players list.
 
