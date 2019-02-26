@@ -1,4 +1,4 @@
-NBA Stats
+BasketStats
 ===========
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/LucasOnofre/NbaStats/blob/master/LICENSE)
